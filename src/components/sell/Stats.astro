@@ -1,0 +1,24 @@
+---
+import Reveal from './Reveal.astro';
+const stats = [
+    { num: '12,000+', label: 'Stores live worldwide' },
+    { num: '$240M', label: 'Processed last year' },
+    { num: '4.9/5', label: 'Average customer rating' },
+    { num: '99.99%', label: 'Uptime since 2022' }
+];
+---
+
+<section class="sell-section !py-20">
+    <div class="sell-container">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((s, i) => (
+                <Reveal delay={((i % 4) + 1) as 1|2|3|4}>
+                    <div class="text-center">
+                        <p class="sell-stat-num">{s.num}</p>
+                        <p class="mt-2 text-sm text-[color:var(--color-sell-muted)]">{s.label}</p>
+                    </div>
+                </Reveal>
+            ))}
+        </div>
+    </div>
+</section>

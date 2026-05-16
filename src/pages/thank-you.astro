@@ -1,0 +1,85 @@
+---
+import SalesLayout from '../layouts/SalesLayout.astro';
+import Nav from '../components/sell/Nav.astro';
+import SellFooter from '../components/sell/SellFooter.astro';
+import Reveal from '../components/sell/Reveal.astro';
+---
+
+<SalesLayout title="You're in! — NovaPro">
+    <Nav />
+
+    <section class="sell-section pt-16 text-center">
+        <div class="sell-container max-w-2xl">
+            <Reveal>
+                <div class="sell-success-icon mx-auto">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+            </Reveal>
+
+            <Reveal delay={1}>
+                <h1 class="mt-8 text-4xl sm:text-6xl font-bold text-white">
+                    Welcome to <span class="sell-gradient-text">NovaPro!</span> 🎉
+                </h1>
+            </Reveal>
+
+            <Reveal delay={2}>
+                <p class="mt-5 text-lg text-[color:var(--color-sell-muted)]">
+                    Your trial is now active. We've sent a confirmation email with your login link and a getting-started guide.
+                </p>
+            </Reveal>
+
+            <Reveal delay={3}>
+                <div class="grid sm:grid-cols-3 gap-4 mt-12">
+                    <div class="sell-card p-5 text-left">
+                        <div class="text-2xl">📧</div>
+                        <p class="mt-3 font-semibold text-white text-sm">Check your inbox</p>
+                        <p class="mt-1 text-xs text-[color:var(--color-sell-muted)]">Login link sent to your email.</p>
+                    </div>
+                    <div class="sell-card p-5 text-left">
+                        <div class="text-2xl">🎬</div>
+                        <p class="mt-3 font-semibold text-white text-sm">Watch the 5-min tour</p>
+                        <p class="mt-1 text-xs text-[color:var(--color-sell-muted)]">Hit the ground running.</p>
+                    </div>
+                    <div class="sell-card p-5 text-left">
+                        <div class="text-2xl">💬</div>
+                        <p class="mt-3 font-semibold text-white text-sm">Join our community</p>
+                        <p class="mt-1 text-xs text-[color:var(--color-sell-muted)]">12,000+ founders, instant help.</p>
+                    </div>
+                </div>
+            </Reveal>
+
+            <Reveal delay={4}>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-12">
+                    <a href="/sell" class="sell-btn">
+                        Go to dashboard
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="/sell#features" class="sell-btn-ghost">Explore features</a>
+                </div>
+            </Reveal>
+        </div>
+    </section>
+
+    <SellFooter />
+</SalesLayout>
+
+<style>
+    .sell-success-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981, #22d3ee);
+        color: white;
+        box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.5);
+        animation: sell-pop 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes sell-pop {
+        0%   { transform: scale(0); opacity: 0; }
+        60%  { transform: scale(1.15); opacity: 1; }
+        100% { transform: scale(1); }
+    }
+</style>

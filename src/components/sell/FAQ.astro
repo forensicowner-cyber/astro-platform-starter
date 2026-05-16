@@ -1,0 +1,37 @@
+---
+import Reveal from './Reveal.astro';
+
+const faqs = [
+    { q: 'Do I need any coding skills?', a: 'Not at all. NovaPro is fully drag-and-drop. If you can use email, you can build a beautiful, high-converting store with us.' },
+    { q: 'Can I use my own domain?', a: 'Yes. Connect any custom domain in under 2 minutes. SSL is included free, automatically.' },
+    { q: 'Which payment methods do you support?', a: 'We support UPI, all major credit/debit cards, net banking, wallets (Paytm, PhonePe, etc.), EMI, and international cards via Stripe.' },
+    { q: 'Can I switch plans later?', a: 'Anytime. Upgrade or downgrade with one click. We pro-rate the difference automatically — no awkward billing.' },
+    { q: 'Is there a free trial?', a: 'Yes. The Starter plan is free forever. Paid plans include a full 14-day trial — no credit card required.' },
+    { q: 'What if I want to cancel?', a: 'Cancel anytime from your dashboard with a single click. No phone calls, no retention pressure, no hidden fees.' }
+];
+---
+
+<section id="faq" class="sell-section">
+    <div class="sell-container max-w-3xl">
+        <div class="text-center mb-14">
+            <Reveal><span class="sell-eyebrow">FAQ</span></Reveal>
+            <Reveal delay={1}>
+                <h2 class="mt-5 text-3xl sm:text-5xl font-bold text-white">Common questions</h2>
+            </Reveal>
+        </div>
+
+        <div class="space-y-3">
+            {faqs.map((f, i) => (
+                <Reveal delay={((i % 3) + 1) as 1|2|3}>
+                    <details class="sell-faq sell-card !rounded-xl px-6 py-5 group">
+                        <summary class="flex items-center justify-between gap-4 text-white font-medium">
+                            <span>{f.q}</span>
+                            <span class="sell-faq-icon transition-transform duration-300 text-[color:var(--color-sell-accent)] text-2xl leading-none">+</span>
+                        </summary>
+                        <p class="mt-4 text-[color:var(--color-sell-muted)] leading-relaxed">{f.a}</p>
+                    </details>
+                </Reveal>
+            ))}
+        </div>
+    </div>
+</section>

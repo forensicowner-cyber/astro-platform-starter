@@ -1,0 +1,14 @@
+---
+// Wraps a slot in a scroll-reveal animation. Use `delay` for staggered effects (1-5).
+interface Props {
+    delay?: 0 | 1 | 2 | 3 | 4 | 5;
+    as?: keyof HTMLElementTagNameMap;
+    class?: string;
+}
+const { delay = 0, as: Tag = 'div', class: className = '' } = Astro.props;
+const delayClass = delay > 0 ? `sell-reveal-delay-${delay}` : '';
+---
+
+<Tag class={`sell-reveal ${delayClass} ${className}`}>
+    <slot />
+</Tag>

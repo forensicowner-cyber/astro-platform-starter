@@ -1,0 +1,120 @@
+---
+import Reveal from './Reveal.astro';
+
+const plans = [
+    {
+        name: 'Starter',
+        price: '₹0',
+        period: 'Forever free',
+        desc: 'Perfect for testing your idea.',
+        features: [
+            'Up to 10 products',
+            '1 sales page',
+            'Basic templates',
+            'NovaPro branding',
+            'Community support'
+        ],
+        cta: 'Start free',
+        href: '/checkout?plan=starter',
+        popular: false
+    },
+    {
+        name: 'Growth',
+        price: '₹999',
+        period: 'per month',
+        desc: 'Most popular for growing stores.',
+        features: [
+            'Unlimited products',
+            'Unlimited sales pages',
+            'All premium templates',
+            'AI copywriter',
+            'Custom domain + SSL',
+            'Abandoned cart recovery',
+            'Priority email support'
+        ],
+        cta: 'Start 14-day trial',
+        href: '/checkout?plan=growth',
+        popular: true
+    },
+    {
+        name: 'Scale',
+        price: '₹2,999',
+        period: 'per month',
+        desc: 'For high-volume sellers.',
+        features: [
+            'Everything in Growth',
+            'Advanced analytics & funnels',
+            'A/B testing built-in',
+            'Multi-currency & languages',
+            'Dedicated success manager',
+            '24/7 phone support'
+        ],
+        cta: 'Start 14-day trial',
+        href: '/checkout?plan=scale',
+        popular: false
+    }
+];
+---
+
+<section id="pricing" class="sell-section">
+    <div class="sell-container">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <Reveal><span class="sell-eyebrow">Pricing</span></Reveal>
+            <Reveal delay={1}>
+                <h2 class="mt-5 text-3xl sm:text-5xl font-bold text-white">
+                    Simple, honest pricing.<br />
+                    <span class="sell-gradient-text">No surprises.</span>
+                </h2>
+            </Reveal>
+            <Reveal delay={2}>
+                <p class="mt-5 text-lg text-[color:var(--color-sell-muted)]">
+                    Start free. Upgrade when you're making money. Cancel anytime.
+                </p>
+            </Reveal>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+            {plans.map((plan, i) => (
+                <Reveal delay={(i + 1) as 1|2|3}>
+                    <div class={`sell-card sell-pricing-card p-8 h-full flex flex-col ${plan.popular ? 'sell-pricing-popular' : ''}`}>
+                        <span class="sell-card-glow"></span>
+                        {plan.popular && <span class="sell-popular">Most Popular</span>}
+                        <h3 class="text-xl font-semibold text-white">{plan.name}</h3>
+                        <p class="mt-2 text-sm text-[color:var(--color-sell-muted)]">{plan.desc}</p>
+                        <div class="mt-5 flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-white">{plan.price}</span>
+                            <span class="text-sm text-[color:var(--color-sell-muted)]">{plan.period}</span>
+                        </div>
+                        <ul class="mt-6 space-y-3 grow">
+                            {plan.features.map((f) => (
+                                <li class="flex items-start gap-2 text-sm text-white/85">
+                                    <svg class="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                    {f}
+                                </li>
+                            ))}
+                        </ul>
+                        <a href={plan.href} class={plan.popular ? 'sell-btn mt-8 w-full' : 'sell-btn-ghost mt-8 w-full'}>
+                            {plan.cta}
+                        </a>
+                    </div>
+                </Reveal>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .sell-pricing-card {
+        position: relative;
+    }
+
+    .sell-pricing-popular {
+        border-color: rgba(124, 92, 255, 0.5);
+        box-shadow: 0 20px 60px -20px rgba(124, 92, 255, 0.5);
+        transform: scale(1.02);
+    }
+
+    .sell-pricing-popular .sell-card-glow {
+        opacity: 1;
+    }
+</style>
