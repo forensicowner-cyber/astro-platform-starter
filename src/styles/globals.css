@@ -76,3 +76,278 @@
         --btn-py: 1.125rem;
     }
 }
+
+
+/* ============================================================
+   SELL — High-converting animated landing page styles
+   ============================================================ */
+
+@theme {
+    --color-sell-bg: #05060a;
+    --color-sell-surface: #0c0f1a;
+    --color-sell-border: #1f2336;
+    --color-sell-text: #e6e8f2;
+    --color-sell-muted: #8a8fa8;
+    --color-sell-accent: #7c5cff;
+    --color-sell-accent-2: #22d3ee;
+    --color-sell-accent-3: #f472b6;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@layer components {
+    /* Animated gradient text */
+    .sell-gradient-text {
+        background: linear-gradient(
+            90deg,
+            var(--color-sell-accent) 0%,
+            var(--color-sell-accent-3) 50%,
+            var(--color-sell-accent-2) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: sell-gradient-shift 6s ease-in-out infinite;
+    }
+
+    /* Glow button */
+    .sell-btn {
+        @apply inline-flex items-center justify-center gap-2 font-semibold cursor-pointer no-underline transition-all duration-300;
+        position: relative;
+        padding: 0.95rem 1.6rem;
+        font-size: 0.95rem;
+        border-radius: 0.6rem;
+        background: linear-gradient(135deg, var(--color-sell-accent), var(--color-sell-accent-3));
+        color: white;
+        box-shadow: 0 10px 30px -10px rgba(124, 92, 255, 0.6),
+                    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    }
+
+    .sell-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 40px -10px rgba(124, 92, 255, 0.8),
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    }
+
+    .sell-btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 font-semibold cursor-pointer no-underline transition-all duration-300;
+        padding: 0.95rem 1.6rem;
+        font-size: 0.95rem;
+        border-radius: 0.6rem;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--color-sell-text);
+        border: 1px solid var(--color-sell-border);
+        backdrop-filter: blur(10px);
+    }
+
+    .sell-btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: var(--color-sell-accent);
+    }
+
+    /* Glass card */
+    .sell-card {
+        position: relative;
+        background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.04) 0%,
+            rgba(255, 255, 255, 0.01) 100%);
+        border: 1px solid var(--color-sell-border);
+        border-radius: 1rem;
+        backdrop-filter: blur(12px);
+        transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .sell-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(124, 92, 255, 0.5);
+        box-shadow: 0 20px 50px -20px rgba(124, 92, 255, 0.4);
+    }
+
+    .sell-card-glow::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg,
+            var(--color-sell-accent),
+            transparent 40%,
+            transparent 60%,
+            var(--color-sell-accent-2));
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .sell-card:hover .sell-card-glow,
+    .sell-card-glow.is-active {
+        opacity: 1;
+    }
+
+    /* Section container */
+    .sell-section {
+        @apply relative py-24 sm:py-32;
+    }
+
+    .sell-container {
+        @apply relative w-full max-w-6xl mx-auto px-6;
+    }
+
+    /* Eyebrow tag */
+    .sell-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.85rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-sell-accent-2);
+        background: rgba(34, 211, 238, 0.08);
+        border: 1px solid rgba(34, 211, 238, 0.25);
+        border-radius: 999px;
+    }
+
+    .sell-eyebrow::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-sell-accent-2);
+        box-shadow: 0 0 12px var(--color-sell-accent-2);
+        animation: sell-pulse 2s ease-in-out infinite;
+    }
+
+    /* Reveal-on-scroll */
+    .sell-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sell-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .sell-reveal-delay-1 { transition-delay: 0.1s; }
+    .sell-reveal-delay-2 { transition-delay: 0.2s; }
+    .sell-reveal-delay-3 { transition-delay: 0.3s; }
+    .sell-reveal-delay-4 { transition-delay: 0.4s; }
+    .sell-reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* Marquee */
+    .sell-marquee {
+        display: flex;
+        gap: 3rem;
+        animation: sell-marquee 30s linear infinite;
+        width: max-content;
+    }
+
+    /* Floating orbs background */
+    .sell-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.5;
+        pointer-events: none;
+        animation: sell-float 14s ease-in-out infinite;
+    }
+
+    /* Grid pattern bg */
+    .sell-grid-bg {
+        background-image:
+            linear-gradient(rgba(124, 92, 255, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(124, 92, 255, 0.06) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+
+    /* Number counter */
+    .sell-stat-num {
+        @apply text-4xl sm:text-5xl font-bold;
+        background: linear-gradient(180deg, #fff 0%, #8a8fa8 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Pricing badge */
+    .sell-popular {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.3rem 0.85rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, var(--color-sell-accent), var(--color-sell-accent-3));
+        color: white;
+        border-radius: 999px;
+        white-space: nowrap;
+    }
+
+    /* FAQ details */
+    .sell-faq summary {
+        list-style: none;
+        cursor: pointer;
+    }
+    .sell-faq summary::-webkit-details-marker { display: none; }
+
+    .sell-faq[open] .sell-faq-icon {
+        transform: rotate(45deg);
+    }
+
+    /* Floating tilt card */
+    .sell-tilt {
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+}
+
+@keyframes sell-gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes sell-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+@keyframes sell-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(40px, -30px) scale(1.05); }
+    66%      { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+@keyframes sell-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes sell-shine {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes sell-fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.sell-fade-in {
+    animation: sell-fade-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

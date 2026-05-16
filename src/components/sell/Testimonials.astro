@@ -1,0 +1,79 @@
+---
+import Reveal from './Reveal.astro';
+
+const testimonials = [
+    {
+        quote: 'Switched from Shopify to NovaPro and our conversion rate jumped from 1.8% to 4.2% in 30 days. The checkout speed alone paid for the subscription.',
+        name: 'Priya Sharma',
+        role: 'Founder, Lumen Beauty',
+        avatar: 'PS'
+    },
+    {
+        quote: 'I built and launched my entire course store in a single weekend. Earned more in my first month than in the previous 6 combined.',
+        name: 'Rahul Verma',
+        role: 'Creator, CodeMaster',
+        avatar: 'RV'
+    },
+    {
+        quote: "The AI copywriter feels like cheating. It writes better product descriptions than I ever could. My click-throughs are up 60%.",
+        name: 'Aisha Khan',
+        role: 'Owner, Bloom Décor',
+        avatar: 'AK'
+    },
+    {
+        quote: "We process 2,000+ orders a day on NovaPro without a single hiccup. Support is fast, the analytics are clear, and it just works.",
+        name: 'Vikram Singh',
+        role: 'CEO, FitFuel India',
+        avatar: 'VS'
+    }
+];
+---
+
+<section class="sell-section">
+    <div class="sell-container">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <Reveal><span class="sell-eyebrow">Loved by founders</span></Reveal>
+            <Reveal delay={1}>
+                <h2 class="mt-5 text-3xl sm:text-5xl font-bold text-white">
+                    Don't just take <span class="sell-gradient-text">our word for it.</span>
+                </h2>
+            </Reveal>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            {testimonials.map((t, i) => (
+                <Reveal delay={((i % 2) + 1) as 1|2}>
+                    <div class="sell-card p-7 h-full">
+                        <span class="sell-card-glow"></span>
+                        <div class="flex gap-1 mb-4 text-amber-400">
+                            {Array.from({ length: 5 }).map(() => <span>★</span>)}
+                        </div>
+                        <p class="text-white/90 leading-relaxed">"{t.quote}"</p>
+                        <div class="flex items-center gap-3 mt-6 pt-6 border-t border-white/5">
+                            <div class="sell-avatar">{t.avatar}</div>
+                            <div>
+                                <p class="font-semibold text-white text-sm">{t.name}</p>
+                                <p class="text-xs text-[color:var(--color-sell-muted)]">{t.role}</p>
+                            </div>
+                        </div>
+                    </div>
+                </Reveal>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .sell-avatar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7c5cff, #f472b6);
+        color: white;
+        font-weight: 700;
+        font-size: 0.85rem;
+    }
+</style>

@@ -1,0 +1,48 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5 mt-20">
+    <div class="sell-container py-12">
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+            <div>
+                <a href="/sell" class="sell-logo no-underline">
+                    <span class="sell-logo-mark"></span>
+                    <span class="sell-logo-text">Nova<span class="sell-gradient-text">Pro</span></span>
+                </a>
+                <p class="mt-4 text-sm text-[color:var(--color-sell-muted)] max-w-xs">
+                    The all-in-one platform that helps founders sell more, faster.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white mb-4">Product</h4>
+                <ul class="space-y-3 text-sm text-[color:var(--color-sell-muted)]">
+                    <li><a href="/sell#features" class="no-underline hover:text-white">Features</a></li>
+                    <li><a href="/sell#pricing" class="no-underline hover:text-white">Pricing</a></li>
+                    <li><a href="/sell#faq" class="no-underline hover:text-white">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white mb-4">Company</h4>
+                <ul class="space-y-3 text-sm text-[color:var(--color-sell-muted)]">
+                    <li><a href="#" class="no-underline hover:text-white">About</a></li>
+                    <li><a href="#" class="no-underline hover:text-white">Blog</a></li>
+                    <li><a href="#" class="no-underline hover:text-white">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-semibold text-white mb-4">Legal</h4>
+                <ul class="space-y-3 text-sm text-[color:var(--color-sell-muted)]">
+                    <li><a href="/privacy" class="no-underline hover:text-white">Privacy</a></li>
+                    <li><a href="/terms" class="no-underline hover:text-white">Terms</a></li>
+                    <li><a href="mailto:hello@novapro.app" class="no-underline hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-[color:var(--color-sell-muted)]">© {year} NovaPro. All rights reserved.</p>
+            <p class="text-xs text-[color:var(--color-sell-muted)]">Crafted with ♥ for founders.</p>
+        </div>
+    </div>
+</footer>

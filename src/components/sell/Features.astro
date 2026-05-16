@@ -1,0 +1,83 @@
+---
+import Reveal from './Reveal.astro';
+
+const features = [
+    {
+        title: 'Drag & drop builder',
+        desc: 'Beautiful, conversion-tested templates. Customize every pixel without writing a single line of code.',
+        icon: `<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>`
+    },
+    {
+        title: 'One-click checkout',
+        desc: 'UPI, cards, wallets, EMI — all working out of the box. 4× faster than typical checkouts.',
+        icon: `<path d="M3 3h2l2.4 12h12.2l1.4-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/>`
+    },
+    {
+        title: 'AI copywriter built-in',
+        desc: 'Generate high-converting product descriptions, email campaigns, and ad copy in seconds.',
+        icon: `<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/>`
+    },
+    {
+        title: 'Real-time analytics',
+        desc: 'Know exactly which pages convert, where users drop off, and what to fix next — at a glance.',
+        icon: `<path d="M3 3v18h18M7 14l4-4 4 4 5-5"/>`
+    },
+    {
+        title: 'Smart email automation',
+        desc: 'Recover abandoned carts automatically. Up-sell, cross-sell, and re-engage on autopilot.',
+        icon: `<path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/>`
+    },
+    {
+        title: 'Lightning fast hosting',
+        desc: 'Global CDN, 99.99% uptime, automatic SSL. Your store loads in under a second, anywhere.',
+        icon: `<path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>`
+    }
+];
+---
+
+<section id="features" class="sell-section">
+    <div class="sell-container">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <Reveal><span class="sell-eyebrow">Features</span></Reveal>
+            <Reveal delay={1}>
+                <h2 class="mt-5 text-3xl sm:text-5xl font-bold text-white">
+                    Everything you need to <span class="sell-gradient-text">close the sale.</span>
+                </h2>
+            </Reveal>
+            <Reveal delay={2}>
+                <p class="mt-5 text-lg text-[color:var(--color-sell-muted)]">
+                    No more juggling tools. Just one beautiful platform that handles it all.
+                </p>
+            </Reveal>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f, i) => (
+                <Reveal delay={((i % 3) + 1) as 1|2|3}>
+                    <div class="sell-card p-7 h-full group">
+                        <span class="sell-card-glow"></span>
+                        <div class="sell-feature-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={f.icon} />
+                        </div>
+                        <h3 class="mt-5 text-lg font-semibold text-white">{f.title}</h3>
+                        <p class="mt-2 text-sm text-[color:var(--color-sell-muted)] leading-relaxed">{f.desc}</p>
+                    </div>
+                </Reveal>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .sell-feature-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 0.6rem;
+        background: linear-gradient(135deg, rgba(124, 92, 255, 0.18), rgba(34, 211, 238, 0.18));
+        color: #fff;
+        border: 1px solid rgba(124, 92, 255, 0.25);
+    }
+</style>

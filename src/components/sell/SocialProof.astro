@@ -1,0 +1,23 @@
+---
+import Reveal from './Reveal.astro';
+const logos = ['ACME', 'STELLAR', 'NORTHWIND', 'PIXELON', 'QUANTUM', 'VERTEX', 'NEBULA', 'ATLAS'];
+---
+
+<section class="py-12 border-y border-white/5">
+    <div class="sell-container">
+        <Reveal>
+            <p class="text-center text-xs uppercase tracking-widest text-[color:var(--color-sell-muted)] mb-8">
+                Trusted by 12,000+ businesses worldwide
+            </p>
+        </Reveal>
+        <div class="overflow-hidden">
+            <div class="sell-marquee">
+                {[...logos, ...logos].map((logo) => (
+                    <span class="text-xl sm:text-2xl font-bold tracking-widest text-white/30 whitespace-nowrap">
+                        {logo}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>

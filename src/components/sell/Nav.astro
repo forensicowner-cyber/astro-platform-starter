@@ -1,0 +1,112 @@
+---
+// Sticky animated nav
+---
+
+<nav class="sell-nav" id="sellNav">
+    <div class="sell-nav-inner">
+        <a href="/sell" class="sell-logo no-underline">
+            <span class="sell-logo-mark"></span>
+            <span class="sell-logo-text">Nova<span class="sell-gradient-text">Pro</span></span>
+        </a>
+        <div class="sell-nav-links">
+            <a href="#features">Features</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#pricing" class="sell-btn sell-btn-sm">Get Started</a>
+    </div>
+</nav>
+
+<script is:inline>
+    (() => {
+        const nav = document.getElementById('sellNav');
+        if (!nav) return;
+        const onScroll = () => {
+            if (window.scrollY > 20) nav.classList.add('is-scrolled');
+            else nav.classList.remove('is-scrolled');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    })();
+</script>
+
+<style>
+    .sell-nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        padding: 1rem 1.25rem;
+        transition: backdrop-filter 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        border-bottom: 1px solid transparent;
+    }
+
+    .sell-nav.is-scrolled {
+        background: rgba(5, 6, 10, 0.7);
+        backdrop-filter: blur(14px);
+        border-bottom-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .sell-nav-inner {
+        max-width: 72rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .sell-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+
+    .sell-logo-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: conic-gradient(from 180deg, #7c5cff, #f472b6, #22d3ee, #7c5cff);
+        position: relative;
+        animation: sell-gradient-shift 5s linear infinite;
+    }
+
+    .sell-logo-mark::after {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        border-radius: 5px;
+        background: #05060a;
+    }
+
+    .sell-nav-links {
+        display: none;
+        align-items: center;
+        gap: 1.75rem;
+        font-size: 0.9rem;
+        color: #cfd2e0;
+    }
+
+    .sell-nav-links a {
+        text-decoration: none;
+        transition: color 0.25s ease;
+    }
+
+    .sell-nav-links a:hover {
+        color: #fff;
+    }
+
+    .sell-btn-sm {
+        padding: 0.55rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    @media (min-width: 768px) {
+        .sell-nav-links {
+            display: inline-flex;
+        }
+    }
+</style>

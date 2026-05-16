@@ -1,0 +1,170 @@
+---
+import Reveal from './Reveal.astro';
+---
+
+<section class="sell-section pt-12 sm:pt-20 pb-16">
+    <div class="sell-container text-center">
+        <Reveal>
+            <span class="sell-eyebrow">New • v2.0 just dropped</span>
+        </Reveal>
+
+        <Reveal delay={1}>
+            <h1 class="mt-6 text-5xl sm:text-7xl font-bold leading-tight tracking-tight text-white">
+                Sell anything,<br />
+                <span class="sell-gradient-text">10× faster.</span>
+            </h1>
+        </Reveal>
+
+        <Reveal delay={2}>
+            <p class="max-w-2xl mx-auto mt-6 text-lg sm:text-xl text-[color:var(--color-sell-muted)]">
+                The all-in-one platform that turns visitors into paying customers — with beautiful pages, smart checkout, and zero code.
+            </p>
+        </Reveal>
+
+        <Reveal delay={3}>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
+                <a href="#pricing" class="sell-btn">
+                    Start selling free
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#how" class="sell-btn-ghost">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    Watch demo (2 min)
+                </a>
+            </div>
+        </Reveal>
+
+        <Reveal delay={4}>
+            <p class="mt-6 text-sm text-[color:var(--color-sell-muted)]">
+                ✓ Free 14-day trial &nbsp; · &nbsp; ✓ No credit card &nbsp; · &nbsp; ✓ Cancel anytime
+            </p>
+        </Reveal>
+
+        <!-- Mock product preview -->
+        <Reveal delay={5}>
+            <div class="relative mx-auto mt-16 sell-hero-preview">
+                <div class="sell-hero-glow"></div>
+                <div class="sell-hero-card">
+                    <div class="sell-hero-bar">
+                        <span></span><span></span><span></span>
+                        <span class="sell-hero-url">novapro.app/dashboard</span>
+                    </div>
+                    <div class="sell-hero-content">
+                        <div class="sell-hero-row">
+                            <div class="sell-hero-stat">
+                                <p class="text-xs text-[color:var(--color-sell-muted)]">Revenue today</p>
+                                <p class="sell-stat-num !text-3xl">$12,847</p>
+                                <p class="text-xs text-emerald-400">↑ 23.4%</p>
+                            </div>
+                            <div class="sell-hero-stat">
+                                <p class="text-xs text-[color:var(--color-sell-muted)]">Orders</p>
+                                <p class="sell-stat-num !text-3xl">187</p>
+                                <p class="text-xs text-emerald-400">↑ 12.1%</p>
+                            </div>
+                            <div class="sell-hero-stat">
+                                <p class="text-xs text-[color:var(--color-sell-muted)]">Conversion</p>
+                                <p class="sell-stat-num !text-3xl">4.7%</p>
+                                <p class="text-xs text-emerald-400">↑ 0.8%</p>
+                            </div>
+                        </div>
+                        <div class="sell-hero-chart">
+                            <svg viewBox="0 0 400 100" preserveAspectRatio="none" class="w-full h-24">
+                                <defs>
+                                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.5"/>
+                                        <stop offset="100%" stop-color="#7c5cff" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,80 C40,70 60,40 100,45 C140,50 160,20 200,25 C240,30 260,55 300,40 C340,25 360,15 400,10 L400,100 L0,100 Z" fill="url(#chartGrad)"/>
+                                <path d="M0,80 C40,70 60,40 100,45 C140,50 160,20 200,25 C240,30 260,55 300,40 C340,25 360,15 400,10" fill="none" stroke="#7c5cff" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Reveal>
+    </div>
+</section>
+
+<style>
+    .sell-hero-preview {
+        max-width: 56rem;
+        perspective: 1500px;
+    }
+
+    .sell-hero-glow {
+        position: absolute;
+        inset: -40px;
+        background: radial-gradient(circle at center, rgba(124, 92, 255, 0.4), transparent 60%);
+        filter: blur(40px);
+        z-index: -1;
+    }
+
+    .sell-hero-card {
+        background: linear-gradient(180deg, #0c0f1a 0%, #07091a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+        transform: rotateX(8deg);
+        transform-origin: center top;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sell-hero-card:hover {
+        transform: rotateX(0deg);
+    }
+
+    .sell-hero-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sell-hero-bar > span:not(.sell-hero-url) {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #2a2f44;
+    }
+
+    .sell-hero-url {
+        margin-left: auto;
+        font-size: 0.7rem;
+        color: #8a8fa8;
+        font-family: ui-monospace, monospace;
+    }
+
+    .sell-hero-content {
+        padding: 1.5rem;
+    }
+
+    .sell-hero-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .sell-hero-stat {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0.6rem;
+        text-align: left;
+    }
+
+    .sell-hero-stat p:nth-child(2) {
+        margin: 0.25rem 0;
+    }
+
+    .sell-hero-chart {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0.6rem;
+        padding: 1rem;
+    }
+</style>
