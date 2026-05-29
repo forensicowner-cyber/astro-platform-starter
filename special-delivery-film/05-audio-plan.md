@@ -1,119 +1,78 @@
-# 05 — AUDIO PLAN (Voiceover · Music · SFX)
+# 05 — AUDIO PLAN (SILENT FILM: Music + SFX, NO Voiceover)
 
-Seedance 2.0 generates audio natively (foley, ambient, some music, lip-sync), but for a
-polished film you should still lay a **clean narration track** and a **consistent music bed**
-on top in editing. Treat Seedance's built-in audio as "scratch/foley" you can keep, duck, or mute.
+This is a **silent film** — there is **no narrator and no spoken dialogue**. The entire story
+is carried by **visuals + music + sound effects**. Seedance 2.0 generates native foley/ambient
+audio per clip; you'll keep the good bits and lay a strong, cohesive **music score** + punchy
+**SFX** on top in editing.
 
----
-
-## PART A — VOICEOVER (Narrator) — clean recording script
-
-Record these lines in one calm, warm, wry storybook voice (nature-documentary meets fairy tale).
-Leave a 1–2s pause between blocks. Read slightly slower than feels natural. Target ~4:45 total.
-
-> Use your own mic in a quiet room (blanket fort works), OR an AI voice tool like ElevenLabs.
-> Recommended AI voice vibe: mature, warm, slightly amused British or neutral narrator.
-
-```
-[VO-01 / 0:00]
-In the quietest corner of the galaxy, there was a planet no bigger than a pebble.
-And on it lived the smallest, kindest people you would never, ever notice.
-
-[VO-02 / 0:12]
-Today was the most important day in Zibbit history. The sky had spoken —
-a great visitor was coming. They had been chosen.
-
-[VO-03 / 0:32]
-Meanwhile, several million miles away, the galaxy's greatest courier was hard at work.
-
-[VO-04 / 0:56]
-He did not read the label. He never read the label.
-
-[VO-05 / 1:15]
-To them, it was the touch of a god. To him, it was a Tuesday.
-
-[VO-06 / 1:42]
-He was looking for a doorbell. They were looking for a miracle.
-Neither would find one.
-
-[VO-07 / 2:32]
-Their bravest pilots flew their final mission. He thought it was an itch.
-
-[VO-08 / 3:32]
-And so, the galaxy's greatest courier prepared to leave the way he came.
-
-[VO-09 / 4:36]
-The package was an award. The little planet had won the galaxy's highest honor —
-for being the kindest world ever found.
-
-[VO-10 / 4:58]  (soft, almost a whisper)
-They were finally seen... by no one at all.
-```
-
-### Character lines (optional separate VO, or let Seedance lip-sync handle them)
-Keep these short and comedic. If Seedance's native voices are good, use those; otherwise record:
-```
-RIGGS (bored male):
-- "Yeah, I'm totally working right now."        (SH-06)
-- "Ugh. A pebble. Great."                        (SH-07)
-- "Okay... where's the address?"                 (SH-14)
-- "Place is a dump. No house numbers, nothing."  (SH-17)
-- "Huh. Mosquitoes? In space?"                   (SH-20)
-- "Yeah, yeah. Nobody's even home."              (SH-25)
-- "Not my problem. Marking it nobody-home."      (SH-26)
-- "...nah, total ghost town."                    (SH-31)
-
-ELDER PIM (tiny hopeful male):
-- "He comes! The Sky Titan comes to bless us!"   (SH-03)
-- "He has arrived! Rejoice!"                      (SH-12)
-- "Great one! We are HERE! Please — see us!"      (SH-22)
-```
+> The only "words" in the whole film appear *on screen* in-world: the **"UNDELIVERABLE"** stamp
+> (SH-26) and the **medal engraving** (SH-35). No voice reads them — the image does the talking.
 
 ---
 
-## PART B — MUSIC PLAN
+## PART A — MUSIC SCORE (the emotional engine)
 
-Use royalty-free music (YouTube Audio Library, Pixabay Music, Uppbeat — credit if required).
-One main theme that transforms in tone = professional and cohesive.
+With no narration, **music does the heavy lifting.** Use royalty-free tracks (YouTube Audio
+Library, Pixabay Music, Uppbeat — credit if required). One main theme that transforms in tone
+= professional and cohesive.
 
 | Cue | Time | Mood | Notes |
 |-----|------|------|-------|
 | M1 — "Tiny Wonder" | 0:00–1:15 | Whimsical, magical, hopeful | Music box / soft strings. Establishes the cute world. |
-| M2 — "The Arrival" | 1:15–2:30 | Grand but slightly ominous | Swelling brass; bigness with unease as destruction starts. |
-| M3 — "Last Stand" | 2:30–3:30 | Heroic-then-deflating | Brave little theme for the fleet, fizzles out comically. |
-| M4 — "Quiet Ruin" | 3:30–4:36 | Sad, sparse | Lone piano. Pull warmth out as the planet dies. |
-| M5 — "The Medal" | 4:36–5:00 | Heartbreaking reveal | Bring back M1's melody but slow & melancholy = emotional payoff. |
+| M2 — "The Arrival" | 1:15–2:30 | Grand but ominous | Swelling brass; bigness with unease as destruction starts. |
+| M3 — "Last Stand" | 2:30–3:30 | Heroic, then deflating | Brave little theme for the fleet that comically fizzles. |
+| M4 — "Quiet Ruin" | 3:30–4:36 | Sad, sparse | Lone piano. Drain the warmth as the planet dies. |
+| M5 — "The Medal" | 4:36–5:00 | Heartbreaking reveal | Slow, sad version of M1 = the gut-punch payoff. |
 
-**Pro move:** make M5 a slow, sad version of the happy M1 theme. Same melody, opposite feeling —
-that's the gut-punch.
+**Pro move:** make **M5 a slow, melancholy version of the happy M1 melody.** Same tune, opposite
+feeling — in a silent film this single trick delivers the entire emotional twist.
+
+**Comedy timing without dialogue:** let the music *stop* or "trip" on the visual jokes — e.g. a
+sudden musical cut-off when the fleet harmlessly fizzles on the boot (SH-20), then a tiny comedic
+sting. Silence and stings replace punchlines.
 
 ---
 
-## PART C — SFX LIST (per beat)
+## PART B — SFX LIST (per beat)
 
-Seedance generates a lot of these natively (see each shot's `AUD:` line). Add/replace these for punch:
+Seedance generates a lot of these natively (see each shot's `Sound:` line — all set to
+"no dialogue, no voiceover"). Add or replace these for punch and clarity:
 
 | SFX | Used in | Source idea |
 |-----|---------|-------------|
 | Deep space ambience / hum | SH-01, 33, 42 | ambient pad |
-| Tiny cheerful crowd | SH-02, 03 | layered high-pitched crowd, pitch-shifted up |
+| Tiny cheerful crowd (wordless) | SH-02, 03, 11 | layered crowd, pitch-shifted up |
 | Big descending rumble | SH-09, 10 | low sub bass + reverb |
 | Earthquake / impact boom | SH-11, 15, 30 | cinematic boom + debris |
 | Crystal shatter | SH-11, 17 | glass break, pitched up |
-| Boot thuds (giant) | SH-13, 15, 31 | heavy footstep + sub |
+| Giant boot thuds | SH-13, 15, 31 | heavy footstep + sub |
 | Slushie slurp / gum | SH-05, 16, 38 | mouth foley |
-| Scanner / UI beeps | SH-07, 14, 24, 26 | sci-fi UI pack |
+| Scanner / UI beeps | SH-07, 24, 26 | sci-fi UI pack |
 | Tiny fleet swarm | SH-19, 20 | small drone whirs, pitched up |
-| Fizz/pop (fleet hitting boot) | SH-20 | tiny firecracker pops |
+| Fizz/pop (fleet vs boot) | SH-20 | tiny firecracker pops |
 | Falling-mass whoosh | SH-29 | low whoosh riser |
-| Eerie silence + ring | SH-30 | sudden cut + tinnitus tone |
+| Eerie silence + ring | SH-30 | hard cut + faint tinnitus tone |
 | Engine ignition / liftoff | SH-08, 32 | rocket roar |
 | Shimmer tone (medal) | SH-34, 35 | bell / glass harmonica |
+| Tiny breath (survivor) | SH-36 | soft close-mic breath, pitched up |
 
-### Mixing notes
-- **Duck Seedance's native audio** under your clean narration (narration is king).
-- Keep music **~6 dB below** narration; SFX punch up briefly then settle.
-- The silence at SH-30 is intentional — don't fill it. Let it breathe before M4 starts.
-- Master the final mix to around **-14 LUFS** (good for YouTube).
+### Non-verbal character sounds (allowed — these are NOT dialogue)
+The courier and aliens can still make **wordless** sounds that Seedance generates or you add:
+grunts, sighs, gum chews, gasps, squeaks, cheers, a confused "huh"-type grunt. **No actual
+words/sentences** — that keeps it a true silent film while still feeling alive.
+
+---
+
+## PART C — MIXING NOTES
+
+- **Music is king** here (no narration to lead). Keep it present but never muddy.
+- SFX punch briefly above the music on impacts, then settle back.
+- **Honor the silence at SH-30** — cut everything for ~1s before M4 creeps in. In a silent
+  film, a beat of true silence is your most powerful "sound."
+- Keep ambient/foley from Seedance low under the score; mute any clip whose native audio is messy.
+- Master the final mix to about **-14 LUFS** (good for YouTube).
+
+> Removed from the earlier version: the narrator voiceover script. It's intentionally gone —
+> this film says everything through pictures, music, and sound.
 
 Next: `06-editing-guide.md`

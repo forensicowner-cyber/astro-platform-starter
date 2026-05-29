@@ -26,8 +26,8 @@ right up until he flattens them looking for the doorbell.
 A story about being small, being kind, and being completely overlooked.
 
 🎬 Made with AI: animated with Seedance 2.0, edited by hand.
+🔇 A silent film — no dialogue. Told through visuals, music & sound.
 🎵 Music: [credit your music sources here]
-🗣️ Narration: [you / AI voice tool]
 
 If you enjoyed it, subscribe for more original animated shorts. ❤️
 
@@ -76,7 +76,7 @@ shadow, terrified, with a sliver of the golden medal visible. Text: **"They Were
 ## UPLOAD SETTINGS
 - Visibility: start **Unlisted** to review once more, then **Public**.
 - Category: **Film & Animation**.
-- Captions: upload your subtitle file (or use auto + correct it).
+- Captions: no dialogue to caption (silent film); the on-screen stamp/medal text is in the video.
 - End screen: last 10–20s, add Subscribe + a "watch next" element.
 - Audience: set "not made for kids" unless you want kids-directed (affects comments/features).
 - Playlist: create an "Animated Shorts" playlist for future videos.
@@ -87,7 +87,7 @@ shadow, terrified, with a sliver of the golden medal visible. Text: **"They Were
 1. This is an **original story** — do NOT label it as "Johnny Express" or use that name/footage.
    Inspiration is fine; copying assets/title is not.
 2. Use **license-cleared music only** (YouTube Audio Library is safest). Credit as required.
-3. If you use an AI voice, check that tool's license allows YouTube/commercial use.
+3. This is a silent film (music + SFX only) — no voice/dialogue licensing to worry about.
 4. Disclose AI use if your region/platform requires it (YouTube has an "altered/synthetic
    content" toggle — enable it where appropriate).
 

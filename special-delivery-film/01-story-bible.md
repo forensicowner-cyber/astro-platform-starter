@@ -15,6 +15,7 @@ Alt titles: "Recipient Not Found", "Pebble-9", "The Galaxy's Best Courier"
 ## Tone & genre
 
 - **Genre:** Sci-fi comedy with a dark/ironic twist.
+- **Format:** **Silent film** — no narrator, no dialogue; story told via visuals, music & SFX.
 - **Tone:** Light and funny for 80% of the runtime, then a sudden bittersweet gut-punch
   in the final 30 seconds (this is the *Johnny Express* "feel").
 - **Comedy engine:** Dramatic irony — the audience sees the tiny world; the giant never does.
@@ -53,13 +54,14 @@ out — and the courier flies off without ever knowing they existed.
 
 ### ELDER PIM — the Zibbit leader
 - **Look:** Slightly taller Zibbit with a glowing ceremonial staff and a flowing robe of light.
-- **Role:** Leads the welcome ceremony, narrates the Zibbits' hope, reacts to the disaster.
-  The emotional anchor of the little world.
+- **Role:** Leads the welcome ceremony, embodies the Zibbits' hope, reacts to the disaster.
+  The emotional anchor of the little world (conveyed entirely through expression and gesture).
 
-### THE NARRATOR (voiceover)
-- Warm, wry, storybook documentary voice (think nature-documentary-meets-fairy-tale).
-- Speaks ABOUT the events, heightening the irony. Never breaks to comedy — plays it straight,
-  which makes it funnier and sadder.
+### NO NARRATOR — this is a SILENT film
+- There is **no voiceover and no spoken dialogue.** The story is told through visuals, music,
+  and sound effects. Characters may make **wordless** sounds only (grunts, gasps, cheers, squeaks).
+- The only words the audience reads are *in-world* and shown on screen: the **"UNDELIVERABLE"**
+  stamp and the **medal engraving**.
 
 ---
 
