@@ -8,6 +8,11 @@ designed to be **generated with Seedance 2.0** and **assembled in a free video e
 > through **visuals + music + sound effects**. (The only on-screen words are *in-world*: the
 > "UNDELIVERABLE" stamp and the medal engraving.)
 
+> ⭐ **START HERE if you want it EASY:** see **`00-EASY-MODE.md`**. It's a low-consistency
+> version (the giant is never shown — only his shadow/boot/hand/parcel), so AI inconsistency
+> barely matters and you need just **one** reference image. Same story, same style, far less
+> work. Files 02–07 are the fuller/detailed version.
+
 > **Original story.** This is NOT a copy of *Johnny Express*. It shares the genre
 > (oblivious-giant comedy) but uses original characters, world, and plot to keep
 > your YouTube channel safe from copyright strikes.
@@ -20,6 +25,7 @@ You don't need to plan anything yourself. Just follow the files **in order**:
 
 | File | What it is | What you do with it |
 |------|------------|---------------------|
+| `00-EASY-MODE.md` | ⭐ Easiest path: low-consistency 30-shot list | **Start here** — copy prompts, 1 reference |
 | `01-story-bible.md` | The concept, characters, world, visual style | Read once to understand the film |
 | `02-script.md` | Full visual/beat script (silent) | Your master reference |
 | `03-shot-list.md` | Every shot + the exact Seedance 2 prompt | Copy-paste prompts into Seedance 2 |
