@@ -1,0 +1,27 @@
+---
+import { products } from '../../data/products';
+import ProductCard from './ProductCard.astro';
+
+const featured = products.slice(0, 4);
+---
+
+<section id="featured" class="bg-ink-soft py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="mb-14 text-center">
+            <p class="eyebrow reveal mb-5 justify-center">Signature Pieces</p>
+            <h2 class="reveal mb-4" style="--reveal-delay:100ms">The Maison Edit</h2>
+            <p class="reveal mx-auto max-w-2xl text-cream-soft/70" style="--reveal-delay:200ms">
+                A handpicked selection of our most coveted creations — each one a testament to the
+                artistry of our master karigars.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featured.map((p, i) => <ProductCard product={p} index={i} />)}
+        </div>
+
+        <div class="reveal mt-14 text-center">
+            <a href="/shop" class="btn btn-gold btn-lg">Browse Full Catalogue</a>
+        </div>
+    </div>
+</section>

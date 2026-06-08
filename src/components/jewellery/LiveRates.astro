@@ -1,0 +1,88 @@
+---
+const cards = [
+    { key: 'g24', label: 'Gold 24K', unit: 'per 10 grams', accent: 'from-[#e7c878] to-[#9c7b30]' },
+    { key: 'g22', label: 'Gold 22K', unit: 'per 10 grams', accent: 'from-[#e7c878] to-[#9c7b30]' },
+    { key: 's', label: 'Silver', unit: 'per kilogram', accent: 'from-[#d9dde2] to-[#9aa0a6]' }
+];
+---
+
+<section id="rates" class="relative overflow-hidden bg-ink-soft py-24 sm:py-32">
+    <div class="absolute inset-0 -z-10 opacity-[0.04]" style="background-image:radial-gradient(circle at 1px 1px, #c9a24b 1px, transparent 0); background-size: 32px 32px;"></div>
+
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="mb-14 text-center">
+            <p class="eyebrow reveal mb-5 justify-center">Today's Indian Market</p>
+            <h2 class="reveal mb-4" style="--reveal-delay:100ms">Live Gold &amp; Silver Rates</h2>
+            <p class="reveal mx-auto max-w-2xl text-cream-soft/70" style="--reveal-delay:200ms">
+                Transparent, real-time pricing sourced from international spot markets and converted to
+                Indian rupees. <span id="rate-status" class="text-gold">Updating…</span>
+            </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+            {
+                cards.map((c, i) => (
+                    <div class="card-luxe reveal-scale group p-8 text-center" style={`--reveal-delay:${i * 120}ms`}>
+                        <div class={`mx-auto mb-6 h-16 w-16 rounded-full bg-gradient-to-br ${c.accent} p-px`}>
+                            <div class="grid h-full w-full place-items-center rounded-full bg-ink-card">
+                                <span class="font-serif text-2xl gold-text">{c.label.includes('Silver') ? 'Ag' : 'Au'}</span>
+                            </div>
+                        </div>
+                        <h3 class="mb-1 font-serif text-2xl text-cream">{c.label}</h3>
+                        <p class="mb-5 text-xs uppercase tracking-[0.2em] text-cream-soft/50">{c.unit}</p>
+                        <div class="font-serif text-4xl text-gold" data-rate={c.key}>
+                            ₹—
+                        </div>
+                        <div class="mt-5 hairline opacity-60" />
+                        <p class="mt-4 text-xs text-cream-soft/50" data-rate-sub={c.key}>&nbsp;</p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <p class="reveal mt-10 text-center text-xs text-cream-soft/40">
+            * Rates are indicative of metal value and exclude making charges, GST and stone value. Last updated
+            <span id="rate-time">—</span>.
+        </p>
+    </div>
+</section>
+
+<script is:inline>
+    (function () {
+        const fmt = (n) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
+
+        function animateValue(el, to, suffix) {
+            const start = 0;
+            const dur = 1100;
+            const t0 = performance.now();
+            function step(now) {
+                const p = Math.min((now - t0) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = fmt(Math.round(start + (to - start) * eased)) + (suffix || '');
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        function render(d) {
+            const map = {
+                g24: { val: d.gold.per10g_24k, sub: `${fmt(d.gold.per1g_24k)} / gram` },
+                g22: { val: d.gold.per10g_22k, sub: `${fmt(d.gold.per1g_22k)} / gram` },
+                s: { val: d.silver.per1kg, sub: `${fmt(d.silver.per10g)} / 10 g` }
+            };
+            Object.entries(map).forEach(([k, v]) => {
+                const el = document.querySelector(`[data-rate="${k}"]`);
+                const sub = document.querySelector(`[data-rate-sub="${k}"]`);
+                if (el) animateValue(el, v.val);
+                if (sub) sub.textContent = v.sub;
+            });
+            const status = document.getElementById('rate-status');
+            if (status) status.textContent = d.live ? 'Live market pricing.' : 'Indicative pricing.';
+            const time = document.getElementById('rate-time');
+            if (time) time.textContent = new Date(d.updatedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+        }
+
+        if (window.__pj_rates) render(window.__pj_rates);
+        document.addEventListener('pj:rates', (e) => render(e.detail));
+    })();
+</script>

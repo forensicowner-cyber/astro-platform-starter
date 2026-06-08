@@ -1,0 +1,50 @@
+---
+const steps = [
+    { no: '01', title: 'Sketched by Hand', text: 'Every piece begins as a drawing, conceived by our in-house designers and refined over generations.' },
+    { no: '02', title: 'Cast in Pure Metal', text: 'BIS-hallmarked 22K & 24K gold and 925 sterling silver, sourced ethically and assayed for purity.' },
+    { no: '03', title: 'Set by Master Karigars', text: 'Diamonds, polki and precious stones hand-set by artisans with decades of inherited expertise.' },
+    { no: '04', title: 'Certified & Delivered', text: 'Each creation arrives with certification, lifetime maintenance and transparent rate-based pricing.' }
+];
+---
+
+<section id="craft" class="relative overflow-hidden bg-ink py-24 sm:py-32">
+    <div class="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
+        <div class="reveal-scale relative">
+            <div class="card-luxe overflow-hidden">
+                <img
+                    src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=1100&q=80"
+                    alt="Goldsmith at work"
+                    loading="lazy"
+                    class="aspect-[4/5] w-full object-cover"
+                />
+            </div>
+            <div class="absolute -bottom-6 -right-6 hidden border border-gold/30 bg-ink-card p-6 shadow-2xl sm:block">
+                <div class="gold-text font-serif text-4xl">1972</div>
+                <div class="text-xs uppercase tracking-[0.2em] text-cream-soft/60">Crafting since</div>
+            </div>
+        </div>
+
+        <div>
+            <p class="eyebrow reveal mb-5">The Pipadeshwar Promise</p>
+            <h2 class="reveal mb-6" style="--reveal-delay:100ms">Heritage in Every Detail</h2>
+            <p class="reveal mb-10 text-cream-soft/75" style="--reveal-delay:200ms">
+                For over five decades, the Pipadeshwar family has crafted jewellery that becomes part of
+                your story — worn at weddings, gifted across generations, treasured for a lifetime.
+            </p>
+
+            <div class="space-y-8">
+                {
+                    steps.map((s, i) => (
+                        <div class="reveal flex gap-5" style={`--reveal-delay:${i * 120}ms`}>
+                            <span class="gold-text font-serif text-3xl leading-none">{s.no}</span>
+                            <div class="flex-1 border-b border-white/5 pb-6">
+                                <h3 class="text-xl text-cream">{s.title}</h3>
+                                <p class="mt-1 text-sm text-cream-soft/65">{s.text}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
