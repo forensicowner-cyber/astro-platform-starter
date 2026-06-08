@@ -1,0 +1,52 @@
+---
+---
+
+<section id="contact" class="relative overflow-hidden bg-ink py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="card-luxe grid overflow-hidden lg:grid-cols-2">
+            <div class="relative hidden lg:block">
+                <img
+                    src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=1100&q=80"
+                    alt="Pipadeshwar boutique"
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent"></div>
+            </div>
+
+            <div class="p-8 sm:p-12">
+                <p class="eyebrow reveal mb-5">Book An Appointment</p>
+                <h2 class="reveal mb-3" style="--reveal-delay:100ms">Visit Our Boutique</h2>
+                <p class="reveal mb-8 text-cream-soft/70" style="--reveal-delay:200ms">
+                    Experience our collections in person, or enquire about a bespoke creation. Our
+                    consultants will guide you through every facet.
+                </p>
+
+                <form id="contact-form" class="reveal space-y-4" style="--reveal-delay:300ms">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <input required name="name" placeholder="Full Name" class="w-full border border-white/10 bg-ink-soft px-4 py-3 text-sm text-cream placeholder:text-cream-soft/40 outline-none focus:border-gold" />
+                        <input required name="phone" placeholder="Phone" class="w-full border border-white/10 bg-ink-soft px-4 py-3 text-sm text-cream placeholder:text-cream-soft/40 outline-none focus:border-gold" />
+                    </div>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full border border-white/10 bg-ink-soft px-4 py-3 text-sm text-cream placeholder:text-cream-soft/40 outline-none focus:border-gold" />
+                    <textarea name="message" rows="3" placeholder="Tell us what you're looking for…" class="w-full border border-white/10 bg-ink-soft px-4 py-3 text-sm text-cream placeholder:text-cream-soft/40 outline-none focus:border-gold"></textarea>
+                    <button type="submit" class="btn btn-gold w-full">Request Appointment</button>
+                    <p id="contact-msg" class="hidden text-sm text-gold">Thank you! Our team will reach out within 24 hours.</p>
+                </form>
+
+                <div class="mt-8 grid gap-3 border-t border-white/5 pt-6 text-sm text-cream-soft/70">
+                    <p>📍 12 Heritage Road, Pink City, Jaipur, Rajasthan 302001</p>
+                    <p>📞 +91 98290 00000 · ✉️ care@pipadeshwarjewellers.com</p>
+                    <p>🕑 Mon–Sat, 10:30 AM – 8:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    document.getElementById('contact-form')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('contact-msg')?.classList.remove('hidden');
+        this.reset();
+    });
+</script>

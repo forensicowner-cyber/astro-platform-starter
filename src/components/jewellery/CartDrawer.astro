@@ -1,0 +1,158 @@
+---
+---
+
+<!-- Backdrop -->
+<div id="cart-backdrop" class="fixed inset-0 z-[60] hidden bg-black/60 opacity-0 backdrop-blur-sm transition-opacity duration-300"></div>
+
+<!-- Drawer -->
+<aside
+    id="cart-drawer"
+    class="fixed right-0 top-0 z-[70] flex h-full w-full max-w-md translate-x-full flex-col border-l border-gold/20 bg-ink-soft shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]"
+>
+    <div class="flex items-center justify-between border-b border-white/5 px-6 py-5">
+        <h3 class="font-serif text-2xl text-cream">Your Selection</h3>
+        <button id="cart-close" class="grid h-9 w-9 place-items-center text-cream-soft hover:text-gold" aria-label="Close cart">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" /></svg>
+        </button>
+    </div>
+
+    <div id="cart-items" class="flex-1 space-y-4 overflow-y-auto px-6 py-6">
+        <p id="cart-empty" class="mt-20 text-center text-cream-soft/50">Your selection is empty.<br />Discover something timeless.</p>
+    </div>
+
+    <div class="border-t border-white/5 px-6 py-6">
+        <div class="mb-4 flex items-center justify-between">
+            <span class="text-sm uppercase tracking-[0.2em] text-cream-soft/60">Subtotal</span>
+            <span id="cart-total" class="font-serif text-2xl text-gold">₹0</span>
+        </div>
+        <p class="mb-4 text-xs text-cream-soft/40">Inclusive of metal value · making charges &amp; GST calculated at checkout.</p>
+        <button id="cart-checkout" class="btn btn-gold w-full" disabled>Proceed to Checkout</button>
+        <p id="cart-checkout-msg" class="mt-3 hidden text-center text-sm text-gold">Thank you! A consultant will contact you to finalise your order.</p>
+    </div>
+</aside>
+
+<script is:inline>
+    (function () {
+        const KEY = 'pj_cart';
+        const fmt = (n) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem(KEY) || '[]');
+        } catch (e) {
+            cart = [];
+        }
+
+        const drawer = document.getElementById('cart-drawer');
+        const backdrop = document.getElementById('cart-backdrop');
+        const itemsEl = document.getElementById('cart-items');
+        const emptyEl = document.getElementById('cart-empty');
+        const totalEl = document.getElementById('cart-total');
+        const countEl = document.getElementById('cart-count');
+        const checkoutBtn = document.getElementById('cart-checkout');
+
+        function save() {
+            localStorage.setItem(KEY, JSON.stringify(cart));
+        }
+
+        function open() {
+            backdrop.classList.remove('hidden');
+            requestAnimationFrame(() => backdrop.classList.remove('opacity-0'));
+            drawer.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+        function close() {
+            backdrop.classList.add('opacity-0');
+            drawer.classList.add('translate-x-full');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        function render() {
+            const count = cart.reduce((s, i) => s + i.qty, 0);
+            const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            if (countEl) countEl.textContent = count;
+            if (totalEl) totalEl.textContent = fmt(total);
+            if (checkoutBtn) checkoutBtn.disabled = count === 0;
+
+            itemsEl.querySelectorAll('[data-cart-item]').forEach((n) => n.remove());
+            emptyEl.style.display = cart.length ? 'none' : 'block';
+
+            cart.forEach((it) => {
+                const row = document.createElement('div');
+                row.setAttribute('data-cart-item', it.id);
+                row.className = 'flex gap-4 border-b border-white/5 pb-4';
+                row.innerHTML = `
+                    <img src="${it.image}" alt="" class="h-20 w-16 flex-shrink-0 object-cover" />
+                    <div class="flex flex-1 flex-col">
+                        <div class="flex justify-between gap-2">
+                            <h4 class="font-serif text-base text-cream">${it.name}</h4>
+                            <button data-remove="${it.id}" class="text-cream-soft/40 hover:text-gold" aria-label="Remove">✕</button>
+                        </div>
+                        <span class="mt-1 text-sm text-gold">${fmt(it.price)}</span>
+                        <div class="mt-auto flex items-center gap-3 pt-2">
+                            <button data-dec="${it.id}" class="grid h-7 w-7 place-items-center border border-white/15 text-cream hover:border-gold">−</button>
+                            <span class="w-6 text-center text-sm text-cream">${it.qty}</span>
+                            <button data-inc="${it.id}" class="grid h-7 w-7 place-items-center border border-white/15 text-cream hover:border-gold">+</button>
+                        </div>
+                    </div>`;
+                itemsEl.appendChild(row);
+            });
+        }
+
+        function add(item) {
+            const existing = cart.find((i) => i.id === item.id);
+            if (existing) existing.qty += 1;
+            else cart.push({ ...item, qty: 1 });
+            save();
+            render();
+            open();
+        }
+
+        // Event delegation for add-to-cart buttons across the page.
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.add-to-cart');
+            if (btn) {
+                add({
+                    id: btn.dataset.id,
+                    name: btn.dataset.name,
+                    price: Number(btn.dataset.price),
+                    image: btn.dataset.image
+                });
+            }
+        });
+
+        // Drawer item controls
+        itemsEl.addEventListener('click', (e) => {
+            const t = e.target;
+            const inc = t.getAttribute('data-inc');
+            const dec = t.getAttribute('data-dec');
+            const rem = t.getAttribute('data-remove');
+            if (inc) cart.find((i) => i.id === inc).qty += 1;
+            if (dec) {
+                const it = cart.find((i) => i.id === dec);
+                it.qty -= 1;
+                if (it.qty <= 0) cart = cart.filter((i) => i.id !== dec);
+            }
+            if (rem) cart = cart.filter((i) => i.id !== rem);
+            if (inc || dec || rem) {
+                save();
+                render();
+            }
+        });
+
+        document.getElementById('cart-open')?.addEventListener('click', open);
+        document.getElementById('cart-close')?.addEventListener('click', close);
+        backdrop?.addEventListener('click', close);
+        document.addEventListener('keydown', (e) => e.key === 'Escape' && close());
+
+        checkoutBtn?.addEventListener('click', () => {
+            if (!cart.length) return;
+            cart = [];
+            save();
+            render();
+            document.getElementById('cart-checkout-msg')?.classList.remove('hidden');
+        });
+
+        render();
+    })();
+</script>

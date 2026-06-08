@@ -1,0 +1,47 @@
+---
+const testimonials = [
+    {
+        quote: 'My bridal set from Pipadeshwar was beyond a dream. The craftsmanship and the transparent gold pricing made it effortless.',
+        name: 'Ananya Sharma',
+        place: 'Jaipur'
+    },
+    {
+        quote: 'Three generations of my family have bought from them. Trust, purity and artistry you simply cannot find elsewhere.',
+        name: 'Rajesh Mehta',
+        place: 'Mumbai'
+    },
+    {
+        quote: 'The live rate transparency is brilliant — I knew exactly what I was paying for. Truly a million-dollar experience.',
+        name: 'Priya Nair',
+        place: 'Bengaluru'
+    }
+];
+---
+
+<section class="bg-ink-soft py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="mb-14 text-center">
+            <p class="eyebrow reveal mb-5 justify-center">Words of Our Patrons</p>
+            <h2 class="reveal" style="--reveal-delay:100ms">Loved for Generations</h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+            {
+                testimonials.map((t, i) => (
+                    <figure class="card-luxe reveal-scale flex flex-col p-8" style={`--reveal-delay:${i * 120}ms`}>
+                        <div class="mb-5 text-gold" aria-hidden="true">
+                            {'★★★★★'}
+                        </div>
+                        <blockquote class="flex-1 font-serif text-xl italic leading-relaxed text-cream/90">
+                            “{t.quote}”
+                        </blockquote>
+                        <figcaption class="mt-6 border-t border-white/5 pt-5">
+                            <div class="font-medium text-cream">{t.name}</div>
+                            <div class="text-xs uppercase tracking-[0.2em] text-cream-soft/50">{t.place}</div>
+                        </figcaption>
+                    </figure>
+                ))
+            }
+        </div>
+    </div>
+</section>

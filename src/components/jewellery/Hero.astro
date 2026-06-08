@@ -1,0 +1,84 @@
+---
+---
+
+<section class="relative flex min-h-[92vh] items-center overflow-hidden">
+    <!-- Background image with parallax -->
+    <div class="absolute inset-0 -z-10">
+        <img
+            id="hero-bg"
+            src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2000&q=80"
+            alt="Fine jewellery"
+            class="h-[115%] w-full object-cover object-center"
+            loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/60 to-ink"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/30 to-transparent"></div>
+    </div>
+
+    <!-- Decorative rotating ring -->
+    <div class="pointer-events-none absolute -right-32 top-1/2 hidden -translate-y-1/2 lg:block">
+        <div class="animate-spin-slow h-[34rem] w-[34rem] rounded-full border border-gold/20"></div>
+        <div class="absolute inset-12 animate-float rounded-full border border-gold/10"></div>
+    </div>
+
+    <div class="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8">
+        <div class="max-w-2xl">
+            <p class="eyebrow reveal mb-6">Est. 1972 · Crafted in India</p>
+            <h1 class="reveal mb-6" style="--reveal-delay:120ms">
+                Timeless Brilliance,<br />
+                <span class="gold-text-shimmer">Forever Yours.</span>
+            </h1>
+            <p class="reveal mb-10 max-w-xl text-lg leading-relaxed text-cream-soft/85" style="--reveal-delay:240ms">
+                Discover Pipadeshwar Jewellers — where five decades of master craftsmanship meet
+                contemporary design. Handcrafted gold, diamond and silver heirlooms, priced
+                transparently against live Indian market rates.
+            </p>
+            <div class="reveal flex flex-wrap items-center gap-4" style="--reveal-delay:360ms">
+                <a href="/shop" class="btn btn-gold btn-lg">Explore Collection</a>
+                <a href="/#rates" class="btn btn-outline btn-lg">View Live Rates</a>
+            </div>
+
+            <div class="reveal mt-16 grid max-w-lg grid-cols-3 gap-6 border-t border-gold/15 pt-8" style="--reveal-delay:480ms">
+                <div>
+                    <div class="gold-text font-serif text-3xl">50+</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.18em] text-cream-soft/60">Years of Trust</div>
+                </div>
+                <div>
+                    <div class="gold-text font-serif text-3xl">BIS</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.18em] text-cream-soft/60">Hallmarked</div>
+                </div>
+                <div>
+                    <div class="gold-text font-serif text-3xl">12K+</div>
+                    <div class="mt-1 text-xs uppercase tracking-[0.18em] text-cream-soft/60">Happy Families</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+        <div class="mx-auto h-12 w-px bg-gradient-to-b from-gold to-transparent"></div>
+        <span class="mt-2 block text-[0.6rem] uppercase tracking-[0.4em] text-cream-soft/50">Scroll</span>
+    </div>
+</section>
+
+<script is:inline>
+    (function () {
+        const bg = document.getElementById('hero-bg');
+        if (!bg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        let ticking = false;
+        window.addEventListener(
+            'scroll',
+            () => {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    const y = window.scrollY;
+                    if (y < window.innerHeight) bg.style.transform = `translateY(${y * 0.18}px) scale(1.02)`;
+                    ticking = false;
+                });
+            },
+            { passive: true }
+        );
+    })();
+</script>

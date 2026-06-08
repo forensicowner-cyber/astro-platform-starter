@@ -1,0 +1,50 @@
+---
+import type { Product } from '../../data/products';
+import { formatINR } from '../../data/products';
+
+interface Props {
+    product: Product;
+    index?: number;
+}
+const { product, index = 0 } = Astro.props;
+---
+
+<article class="card-luxe reveal-scale group flex flex-col" style={`--reveal-delay:${(index % 4) * 90}ms`}>
+    <div class="relative aspect-[4/5] overflow-hidden">
+        <img
+            src={product.image}
+            alt={product.name}
+            loading="lazy"
+            class="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        {
+            product.tag && (
+                <span class="absolute left-4 top-4 bg-gold px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-ink">
+                    {product.tag}
+                </span>
+            )
+        }
+        <button
+            class="add-to-cart absolute inset-x-4 bottom-4 translate-y-4 bg-ink/90 py-3 text-xs font-medium uppercase tracking-[0.2em] text-cream opacity-0 backdrop-blur transition-all duration-500 hover:bg-gold hover:text-ink group-hover:translate-y-0 group-hover:opacity-100"
+            data-id={product.id}
+            data-name={product.name}
+            data-price={product.price}
+            data-image={product.image}
+        >
+            Add to Cart
+        </button>
+    </div>
+    <div class="flex flex-1 flex-col p-5">
+        <div class="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.2em] text-gold/80">
+            <span>{product.metal}</span>
+            <span class="text-cream-soft/50">{product.weight}</span>
+        </div>
+        <h3 class="mt-2 font-serif text-xl text-cream">{product.name}</h3>
+        <p class="mt-1 line-clamp-2 text-sm text-cream-soft/60">{product.description}</p>
+        <div class="mt-4 flex items-center justify-between border-t border-white/5 pt-4">
+            <span class="font-serif text-lg text-gold">{formatINR(product.price)}</span>
+            <span class="text-xs uppercase tracking-[0.15em] text-cream-soft/40">+ GST</span>
+        </div>
+    </div>
+</article>
