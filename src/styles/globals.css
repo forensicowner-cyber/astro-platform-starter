@@ -211,7 +211,40 @@
     .hf-anim-marquee,
     .hf-anim-aurora,
     .hf-skeleton,
-    .hf-spin-ring {
+    .hf-spin-ring,
+    .hf-kenburns {
         animation: none !important;
+    }
+}
+
+/* cinemagraph: a slow, seamless (ping-pong) cinematic push used to give
+   key tiles a sense of motion without shipping video files */
+.hf-kenburns {
+    animation: hf-kenburns 20s ease-in-out infinite alternate;
+    will-change: transform;
+}
+@keyframes hf-kenburns {
+    from {
+        transform: scale(1.06);
+    }
+    to {
+        transform: scale(1.18) translate(2%, -2%);
+    }
+}
+
+/* accessibility: visible focus + skip link */
+@layer base {
+    :focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.75);
+        outline-offset: 2px;
+        border-radius: 3px;
+    }
+}
+@layer components {
+    .hf-skip {
+        @apply sr-only;
+    }
+    .hf-skip:focus {
+        @apply not-sr-only fixed left-4 top-4 z-[100] rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black no-underline;
     }
 }

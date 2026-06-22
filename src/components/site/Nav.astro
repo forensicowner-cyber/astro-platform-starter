@@ -2,26 +2,36 @@
 import Wordmark from './Wordmark.astro';
 
 const links = [
-    { label: 'Products', href: '#products' },
-    { label: 'Presets', href: '#presets' },
-    { label: 'Models', href: '#models' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Enterprise', href: '#enterprise' },
-    { label: 'Community', href: '#community' }
+    { label: 'Products', href: '/#products' },
+    { label: 'Presets', href: '/#presets' },
+    { label: 'Models', href: '/#models' },
+    { label: 'Explore', href: '/explore' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Enterprise', href: '/enterprise' }
 ];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => !href.includes('#') && (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/10 hf-glass">
-    <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+    <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Primary">
         <input type="checkbox" id="hf-nav-toggle" class="peer hidden" />
 
-        <a href="/" class="no-underline"><Wordmark /></a>
+        <a href="/" class="no-underline" aria-label="Higgsfield home"><Wordmark /></a>
 
         <ul class="hidden items-center gap-7 lg:flex">
             {
                 links.map((l) => (
                     <li>
-                        <a href={l.href} class="text-sm text-white/70 no-underline transition hover:text-white">
+                        <a
+                            href={l.href}
+                            aria-current={isActive(l.href) ? 'page' : undefined}
+                            class:list={[
+                                'text-sm no-underline transition hover:text-white',
+                                isActive(l.href) ? 'text-white' : 'text-white/70'
+                            ]}
+                        >
                             {l.label}
                         </a>
                     </li>
@@ -31,7 +41,7 @@ const links = [
 
         <div class="hidden items-center gap-3 lg:flex">
             <a href="#" class="text-sm text-white/70 no-underline transition hover:text-white">Sign in</a>
-            <a href="#" class="hf-btn hf-btn-primary">Start creating</a>
+            <a href="/#create" class="hf-btn hf-btn-primary">Start creating</a>
         </div>
 
         <label for="hf-nav-toggle" class="flex cursor-pointer items-center p-1 lg:hidden" aria-label="Toggle menu">
@@ -49,14 +59,18 @@ const links = [
         >
             {
                 links.map((l) => (
-                    <a href={l.href} class="rounded-lg px-3 py-2.5 text-base text-white/80 no-underline transition hover:bg-white/5">
+                    <a
+                        href={l.href}
+                        aria-current={isActive(l.href) ? 'page' : undefined}
+                        class="rounded-lg px-3 py-2.5 text-base text-white/80 no-underline transition hover:bg-white/5"
+                    >
                         {l.label}
                     </a>
                 ))
             }
             <div class="mt-3 flex flex-col gap-2">
                 <a href="#" class="hf-btn hf-btn-outline">Sign in</a>
-                <a href="#" class="hf-btn hf-btn-primary">Start creating</a>
+                <a href="/#create" class="hf-btn hf-btn-primary">Start creating</a>
             </div>
         </div>
     </nav>
