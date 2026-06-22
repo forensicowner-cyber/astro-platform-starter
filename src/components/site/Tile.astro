@@ -1,0 +1,38 @@
+---
+interface Props {
+    label?: string;
+    sub?: string;
+    grad?: string;
+    ratio?: string;
+    badge?: string;
+    float?: boolean;
+    class?: string;
+}
+
+const { label, sub, grad = 'hf-g1', ratio = 'aspect-[3/4]', badge, float = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['hf-card group', ratio, className]}>
+    <div class:list={['absolute inset-0', grad, float && 'hf-anim-float']}></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
+    <div class="absolute inset-0 grid place-items-center opacity-0 transition duration-300 group-hover:opacity-100">
+        <span class="grid h-12 w-12 place-items-center rounded-full bg-white/95 text-black shadow-lg">
+            <svg viewBox="0 0 24 24" class="ml-0.5 h-5 w-5" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+        </span>
+    </div>
+    {
+        badge && (
+            <span class="absolute left-3 top-3 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur">
+                {badge}
+            </span>
+        )
+    }
+    {
+        (label || sub) && (
+            <div class="absolute inset-x-0 bottom-0 p-3.5">
+                {label && <p class="text-sm font-semibold leading-tight">{label}</p>}
+                {sub && <p class="mt-0.5 text-xs text-white/60">{sub}</p>}
+            </div>
+        )
+    }
+</div>

@@ -1,0 +1,22 @@
+---
+interface Props {
+    class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<span class:list={['inline-flex items-center gap-2', className]}>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+            d="M12 1.5l2.1 6.3a4 4 0 0 0 2.1 2.1L22.5 12l-6.3 2.1a4 4 0 0 0-2.1 2.1L12 22.5l-2.1-6.3a4 4 0 0 0-2.1-2.1L1.5 12l6.3-2.1a4 4 0 0 0 2.1-2.1L12 1.5z"
+            fill="url(#hf-mark)"></path>
+        <defs>
+            <linearGradient id="hf-mark" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ff8a3a"></stop>
+                <stop offset="0.5" stop-color="#ff2d72"></stop>
+                <stop offset="1" stop-color="#8b5cf6"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    <span class="text-[1.15rem] font-semibold tracking-tight">Higgsfield</span>
+</span>

@@ -1,0 +1,78 @@
+---
+import Tile from './Tile.astro';
+
+const wall = [
+    { label: 'Drift Racing', sub: 'Seedance · Motion', grad: 'hf-g1', badge: 'Video', float: true },
+    { label: 'Storm Giant', sub: 'Cinematic VFX', grad: 'hf-g6', badge: 'Video' },
+    { label: 'Neon Tokyo', sub: 'Nano Banana', grad: 'hf-g2', badge: 'Image', float: true },
+    { label: 'Golden Hour', sub: 'Portrait', grad: 'hf-g5', badge: 'Image' },
+    { label: 'Bullet Time', sub: 'Camera control', grad: 'hf-g3', badge: 'Video' },
+    { label: 'FPV Drone', sub: 'Kling 2.5', grad: 'hf-g4', badge: 'Video', float: true },
+    { label: 'Vogue Cover', sub: 'Seedream 4', grad: 'hf-g10', badge: 'Image' },
+    { label: 'Deep Space', sub: 'Veo 3', grad: 'hf-g9', badge: 'Video', float: true }
+];
+
+const models = ['Seedance 2.0', 'Kling 2.5', 'Veo 3', 'Sora 2', 'Flux 1.1', 'Nano Banana', 'Seedream 4', 'Hailuo', 'Wan 2.5', 'Ideogram', 'Recraft', 'Luma'];
+---
+
+<section class="relative overflow-hidden">
+    <!-- aurora backdrop -->
+    <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute left-1/2 top-[-12%] h-[58vh] w-[58vh] -translate-x-1/2 rounded-full bg-fuchsia-600/30 blur-[130px] hf-anim-aurora"></div>
+        <div class="absolute right-[6%] top-[18%] h-[40vh] w-[40vh] rounded-full bg-orange-500/20 blur-[120px] hf-anim-aurora"></div>
+        <div class="absolute left-[4%] top-[34%] h-[42vh] w-[42vh] rounded-full bg-indigo-600/25 blur-[120px] hf-anim-aurora"></div>
+    </div>
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-noise opacity-[0.12]"></div>
+
+    <div class="mx-auto max-w-7xl px-5 pb-16 pt-20 sm:px-8 sm:pt-28">
+        <div class="mx-auto max-w-3xl text-center">
+            <a href="#" class="hf-chip no-underline transition hover:border-white/30 hover:text-white/90">
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-orange-400 to-fuchsia-500"></span>
+                New · Seedance 2.0 — unlimited generations
+                <span aria-hidden="true">→</span>
+            </a>
+
+            <h1 class="mt-6 text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl">
+                The AI-native creative suite for <span class="hf-text-gradient">everything</span>
+            </h1>
+
+            <p class="mx-auto mt-6 max-w-2xl text-lg text-white/60">
+                Generate cinematic video, striking images and lifelike voice from a single prompt — every leading model,
+                one seamless workspace.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <a href="#" class="hf-btn hf-btn-primary hf-btn-lg">Start creating free</a>
+                <a href="#" class="hf-btn hf-btn-outline hf-btn-lg">
+                    <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                    Watch the reel
+                </a>
+            </div>
+            <p class="mt-4 text-xs text-white/40">No credit card required · Join 10M+ creators</p>
+        </div>
+
+        <!-- generated-media wall -->
+        <div class="relative mt-16">
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
+                {wall.map((t) => <Tile {...t} ratio="aspect-[3/4]" />)}
+            </div>
+            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent"></div>
+        </div>
+    </div>
+
+    <!-- supported-model marquee -->
+    <div class="border-y border-white/10 py-7">
+        <p class="mb-5 text-center hf-eyebrow">Every model. One subscription.</p>
+        <div
+            class="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+        >
+            <div class="flex w-max items-center gap-12 hf-anim-marquee">
+                {
+                    [...models, ...models].map((m) => (
+                        <span class="whitespace-nowrap text-lg font-medium text-white/45">{m}</span>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
