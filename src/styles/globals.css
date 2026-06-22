@@ -2,8 +2,8 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
+    --color-primary: #8b5cf6;
+    --color-primary-content: #ffffff;
     --color-complementary: #355c7d;
     --background-image-noise: linear-gradient(
             to bottom,
@@ -74,5 +74,177 @@
         --btn-font-size: 1.125rem;
         --btn-px: 1.5rem;
         --btn-py: 1.125rem;
+    }
+}
+
+/* ============================================================
+   MEGNUM marketing site — design system
+   (scoped with an `hf-` prefix so the Netlify demo pages,
+   which share this stylesheet, are left untouched)
+   ============================================================ */
+
+@layer components {
+    .hf-btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-full font-medium no-underline cursor-pointer transition-all duration-200 select-none;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.9rem;
+        line-height: 1;
+    }
+    .hf-btn-primary {
+        @apply bg-white text-black hover:bg-white/90;
+    }
+    .hf-btn-dark {
+        @apply border border-white/10 bg-white/10 text-white hover:bg-white/15;
+    }
+    .hf-btn-outline {
+        @apply border border-white/20 text-white hover:border-white/40 hover:bg-white/5;
+    }
+    .hf-btn-gradient {
+        @apply text-white;
+        background-image: linear-gradient(120deg, #c084fc, #a855f7 45%, #6d28d9);
+        box-shadow: 0 10px 34px -10px rgba(139, 92, 246, 0.6);
+    }
+    .hf-btn-gradient:hover {
+        filter: brightness(1.08);
+    }
+    .hf-btn-lg {
+        padding: 0.95rem 1.7rem;
+        font-size: 1rem;
+    }
+
+    .hf-card {
+        @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5;
+    }
+    .hf-chip {
+        @apply inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/70;
+    }
+    .hf-eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.2em] text-white/40;
+    }
+}
+
+@layer utilities {
+    .hf-glass {
+        background: rgba(8, 8, 10, 0.6);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
+    .hf-text-gradient {
+        background-image: linear-gradient(115deg, #ffffff 25%, #d8b4fe 48%, #a855f7 70%, #7c3aed);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* media placeholders that stand in for generated stills/clips */
+    .hf-g1 { background-image: linear-gradient(135deg, #ff8a3a, #ff2d72 55%, #7c3aed); }
+    .hf-g2 { background-image: linear-gradient(135deg, #06b6d4, #3b82f6 55%, #7c3aed); }
+    .hf-g3 { background-image: linear-gradient(135deg, #f43f5e, #a855f7 60%, #312e81); }
+    .hf-g4 { background-image: linear-gradient(135deg, #22c55e, #0ea5e9 60%, #1e1b4b); }
+    .hf-g5 { background-image: linear-gradient(135deg, #fbbf24, #fb7185 55%, #9333ea); }
+    .hf-g6 { background-image: linear-gradient(135deg, #e879f9, #6366f1 55%, #0f172a); }
+    .hf-g7 { background-image: linear-gradient(135deg, #fb923c, #ef4444 50%, #111827); }
+    .hf-g8 { background-image: linear-gradient(135deg, #34d399, #14b8a6 50%, #0b1220); }
+    .hf-g9 { background-image: linear-gradient(135deg, #60a5fa, #c084fc 55%, #1e293b); }
+    .hf-g10 { background-image: linear-gradient(135deg, #f472b6, #fb7185 45%, #facc15); }
+
+    .hf-anim-float { animation: hf-float 7s ease-in-out infinite; }
+    .hf-anim-float-slow { animation: hf-float 11s ease-in-out infinite; }
+    .hf-anim-marquee { animation: hf-marquee 38s linear infinite; }
+    .hf-anim-aurora { animation: hf-aurora 16s ease-in-out infinite; }
+}
+
+@keyframes hf-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+@keyframes hf-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+@keyframes hf-aurora {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.75; }
+    50% { transform: translate(4%, -3%) scale(1.18); opacity: 1; }
+}
+
+/* interactive "Create" demo widget */
+@layer components {
+    .hf-field {
+        @apply rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/40;
+    }
+    .hf-aspect-btn {
+        @apply rounded-lg px-3 py-1.5 text-xs font-medium text-white/60 transition hover:text-white;
+    }
+    .hf-aspect-on {
+        @apply bg-white text-black hover:text-black;
+    }
+}
+
+@layer utilities {
+    .hf-skeleton {
+        background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.04) 30%, rgba(255, 255, 255, 0.14) 50%, rgba(255, 255, 255, 0.04) 70%);
+        background-size: 200% 100%;
+        animation: hf-shimmer 1.4s linear infinite;
+    }
+    .hf-spin-ring {
+        border-radius: 9999px;
+        border: 2px solid rgba(255, 255, 255, 0.45);
+        border-top-color: #ffffff;
+        animation: hf-spin 0.7s linear infinite;
+    }
+}
+
+@keyframes hf-shimmer {
+    to {
+        background-position: -200% 0;
+    }
+}
+@keyframes hf-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hf-anim-float,
+    .hf-anim-float-slow,
+    .hf-anim-marquee,
+    .hf-anim-aurora,
+    .hf-skeleton,
+    .hf-spin-ring,
+    .hf-kenburns {
+        animation: none !important;
+    }
+}
+
+/* cinemagraph: a slow, seamless (ping-pong) cinematic push used to give
+   key tiles a sense of motion without shipping video files */
+.hf-kenburns {
+    animation: hf-kenburns 20s ease-in-out infinite alternate;
+    will-change: transform;
+}
+@keyframes hf-kenburns {
+    from {
+        transform: scale(1.06);
+    }
+    to {
+        transform: scale(1.18) translate(2%, -2%);
+    }
+}
+
+/* accessibility: visible focus + skip link */
+@layer base {
+    :focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.75);
+        outline-offset: 2px;
+        border-radius: 3px;
+    }
+}
+@layer components {
+    .hf-skip {
+        @apply sr-only;
+    }
+    .hf-skip:focus {
+        @apply not-sr-only fixed left-4 top-4 z-[100] rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black no-underline;
     }
 }

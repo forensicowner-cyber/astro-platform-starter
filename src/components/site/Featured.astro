@@ -1,0 +1,95 @@
+---
+// Bento grid of flagship products.
+const small = [
+    {
+        title: 'Speak',
+        desc: 'Lifelike AI voices and frame-accurate lipsync in 30+ languages.',
+        grad: 'hf-g3',
+        img: '/media/prod-speak.webp',
+        badge: 'Voice'
+    },
+    {
+        title: 'Canvas',
+        desc: 'An infinite workspace to mix, mask and recompose every generation.',
+        grad: 'hf-g2',
+        img: '/media/prod-canvas.webp',
+        badge: 'Editor'
+    },
+    {
+        title: 'Photoshop Plugin',
+        desc: 'Turn rough sketches into finished renders in real time, on your layers.',
+        grad: 'hf-g5',
+        img: '/media/prod-plugin.webp',
+        badge: 'Plugin'
+    },
+    {
+        title: 'MEGNUM Games',
+        desc: 'Playable, generative worlds you can prompt into existence and share.',
+        grad: 'hf-g4',
+        img: '/media/prod-games.webp',
+        badge: 'New'
+    }
+];
+---
+
+<section id="products" class="mx-auto max-w-7xl scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28">
+    <div class="max-w-2xl">
+        <p class="hf-eyebrow">Products</p>
+        <h2 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">One suite for the entire creative pipeline</h2>
+        <p class="mt-4 text-lg text-white/60">From first frame to final cut — direct, generate, edit and voice without ever leaving the canvas.</p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- hero product -->
+        <article class="hf-card group flex min-h-[26rem] flex-col justify-end sm:col-span-2 lg:row-span-2">
+            <div class="absolute inset-0 hf-g6"></div>
+            <img
+                src="/media/prod-cinema.webp"
+                alt="Cinema Studio"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover hf-kenburns"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+            <div class="relative p-7">
+                <span class="hf-chip mb-4">Cinema Studio</span>
+                <h3 class="text-3xl font-semibold tracking-tight">Direct entire scenes, shot by shot</h3>
+                <p class="mt-3 max-w-md text-white/70">
+                    Storyboard, set camera moves, lock characters and render consistent sequences — a real director's
+                    chair powered by every top video model.
+                </p>
+                <a href="/explore" class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white no-underline transition hover:gap-2.5">
+                    Open Cinema Studio <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </article>
+
+        {
+            small.map((p) => (
+                <article class="hf-card group flex flex-col">
+                    <div class="relative aspect-[16/10] overflow-hidden">
+                        <div class:list={['absolute inset-0', p.grad]} />
+                        <img
+                            src={p.img}
+                            alt={p.title}
+                            loading="lazy"
+                            decoding="async"
+                            class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                        <span class="absolute left-3 top-3 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur">
+                            {p.badge}
+                        </span>
+                    </div>
+                    <div class="flex grow flex-col p-5">
+                        <h3 class="text-lg font-semibold">{p.title}</h3>
+                        <p class="mt-1.5 text-sm text-white/60">{p.desc}</p>
+                        <a href="/explore" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-white/80 no-underline transition hover:text-white">
+                            Explore <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </article>
+            ))
+        }
+    </div>
+</section>

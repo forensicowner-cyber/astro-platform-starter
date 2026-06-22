@@ -1,0 +1,89 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Pricing from '../components/site/Pricing.astro';
+import Faq from '../components/site/Faq.astro';
+
+const rows = [
+    { f: 'Monthly credits', free: '50', pro: 'Unlimited*', ult: 'Unlimited*' },
+    { f: 'Image models', free: 'Standard', pro: 'All', ult: 'All + early access' },
+    { f: 'Video models', free: false, pro: 'All', ult: 'All + early access' },
+    { f: 'Max resolution', free: '720p', pro: '1080p', ult: '4K + upscale' },
+    { f: 'Watermark-free exports', free: false, pro: true, ult: true },
+    { f: 'Commercial license', free: false, pro: true, ult: true },
+    { f: 'MEGNUM Agent', free: false, pro: false, ult: true },
+    { f: 'API access', free: false, pro: false, ult: true },
+    { f: 'Team seats', free: '1', pro: '1', ult: '5+' },
+    { f: 'Support', free: 'Community', pro: 'Priority', ult: 'Dedicated' }
+];
+
+const faqs = [
+    { q: 'Can I change plans later?', a: 'Yes — upgrade, downgrade or cancel anytime from your dashboard. Changes are prorated to the day.' },
+    { q: 'What counts as a credit?', a: 'A credit maps to a single generation (one image or a short video clip). Paid plans include fair-use unlimited generations on standard models.' },
+    { q: 'Do I own what I create?', a: 'On Pro and Ultimate you receive a full commercial license to your outputs. The Free plan is for personal, non-commercial use.' },
+    { q: 'Is there a free trial?', a: 'The Free plan is free forever. You can explore the full toolset and upgrade the moment you need watermark-free, higher-resolution exports.' },
+    { q: 'Do you offer team or education discounts?', a: 'Yes. Team plans include shared seats and billing, and we offer discounts for students and educators — reach out and we will sort you out.' }
+];
+---
+
+<SiteLayout
+    title="Pricing — MEGNUM"
+    description="Simple plans for creators and teams. Every image, video and audio model on one subscription. Start free, upgrade when you ship."
+>
+    <section class="mx-auto max-w-7xl px-5 pb-2 pt-20 text-center sm:px-8 sm:pt-24">
+        <p class="hf-eyebrow">Pricing</p>
+        <h1 class="mx-auto mt-3 max-w-3xl text-balance text-5xl font-semibold tracking-tight sm:text-6xl">
+            Plans that scale with your imagination
+        </h1>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-white/60">
+            Every model and tool on one subscription. Start free, upgrade when you ship.
+        </p>
+    </section>
+
+    <Pricing />
+
+    <section class="mx-auto max-w-5xl px-5 pb-10 sm:px-8">
+        <h2 class="mb-6 text-center text-2xl font-semibold sm:text-3xl">Compare plans</h2>
+        <div class="overflow-x-auto rounded-2xl border border-white/10">
+            <table class="w-full min-w-[640px] text-left text-sm">
+                <thead>
+                    <tr class="border-b border-white/10 text-white/60">
+                        <th scope="col" class="p-4 font-medium">Feature</th>
+                        <th scope="col" class="p-4 font-medium">Free</th>
+                        <th scope="col" class="p-4 font-medium">Pro</th>
+                        <th scope="col" class="p-4 font-medium">Ultimate</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5">
+                    {
+                        rows.map((r) => (
+                            <tr>
+                                <th scope="row" class="p-4 text-left font-normal text-white/80">{r.f}</th>
+                                {[r.free, r.pro, r.ult].map((v) => (
+                                    <td class="p-4">
+                                        {typeof v === 'boolean' ? (
+                                            v ? (
+                                                <svg class="h-5 w-5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6L9 17l-5-5" />
+                                                </svg>
+                                            ) : (
+                                                <span class="text-white/25">—</span>
+                                            )
+                                        ) : (
+                                            <span class="text-white/70">{v}</span>
+                                        )}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-3 text-xs text-white/30">* Fair-use unlimited on standard models. Pricing shown is illustrative for this demo.</p>
+    </section>
+
+    <section class="mx-auto max-w-3xl px-5 py-16 sm:px-8">
+        <h2 class="mb-6 text-2xl font-semibold sm:text-3xl">Frequently asked</h2>
+        <Faq items={faqs} />
+    </section>
+</SiteLayout>
