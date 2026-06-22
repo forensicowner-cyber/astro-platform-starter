@@ -1,0 +1,9 @@
+# Netlify build configuration
+# The @astrojs/netlify adapter wires up SSR functions automatically;
+# this just pins the build command, publish dir and Node version.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"

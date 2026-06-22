@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-    title = 'Higgsfield — The AI-native creative suite',
+    title = 'MEGNUM — The AI-native creative suite',
     description = 'Generate cinematic video, striking images and lifelike voice from a single prompt. Every leading model, one seamless creative workspace.'
 } = Astro.props;
 
@@ -21,7 +21,7 @@ const ogImage = Astro.site ? new URL('/og.jpg', Astro.site).href : '/og.jpg';
 const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Higgsfield',
+    name: 'MEGNUM',
     url: Astro.site?.href ?? canonical,
     logo: ogImage,
     description
@@ -40,7 +40,7 @@ const jsonLd = {
         <meta name="theme-color" content="#000000" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Higgsfield" />
+        <meta property="og:site_name" content="MEGNUM" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonical} />
@@ -54,7 +54,7 @@ const jsonLd = {
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
         <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
     </head>
-    <body class="min-h-screen bg-black font-sans text-white antialiased selection:bg-fuchsia-500/30">
+    <body class="min-h-screen bg-black font-sans text-white antialiased selection:bg-purple-500/30">
         <a href="#main" class="hf-skip">Skip to content</a>
         <div class="relative overflow-x-clip">
             <Nav />
