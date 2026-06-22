@@ -167,11 +167,51 @@
     50% { transform: translate(4%, -3%) scale(1.18); opacity: 1; }
 }
 
+/* interactive "Create" demo widget */
+@layer components {
+    .hf-field {
+        @apply rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white outline-none transition focus:border-white/40;
+    }
+    .hf-aspect-btn {
+        @apply rounded-lg px-3 py-1.5 text-xs font-medium text-white/60 transition hover:text-white;
+    }
+    .hf-aspect-on {
+        @apply bg-white text-black hover:text-black;
+    }
+}
+
+@layer utilities {
+    .hf-skeleton {
+        background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.04) 30%, rgba(255, 255, 255, 0.14) 50%, rgba(255, 255, 255, 0.04) 70%);
+        background-size: 200% 100%;
+        animation: hf-shimmer 1.4s linear infinite;
+    }
+    .hf-spin-ring {
+        border-radius: 9999px;
+        border: 2px solid rgba(255, 255, 255, 0.45);
+        border-top-color: #ffffff;
+        animation: hf-spin 0.7s linear infinite;
+    }
+}
+
+@keyframes hf-shimmer {
+    to {
+        background-position: -200% 0;
+    }
+}
+@keyframes hf-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .hf-anim-float,
     .hf-anim-float-slow,
     .hf-anim-marquee,
-    .hf-anim-aurora {
+    .hf-anim-aurora,
+    .hf-skeleton,
+    .hf-spin-ring {
         animation: none !important;
     }
 }

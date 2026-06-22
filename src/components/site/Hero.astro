@@ -1,16 +1,5 @@
 ---
-import Tile from './Tile.astro';
-
-const wall = [
-    { label: 'Drift Racing', sub: 'Seedance · Motion', grad: 'hf-g1', img: '/media/hero-drift.jpg', badge: 'Video', float: true, eager: true },
-    { label: 'Storm Giant', sub: 'Cinematic VFX', grad: 'hf-g6', img: '/media/hero-storm.jpg', badge: 'Video', eager: true },
-    { label: 'Neon Tokyo', sub: 'Nano Banana', grad: 'hf-g2', img: '/media/hero-neon.jpg', badge: 'Image', float: true, eager: true },
-    { label: 'Golden Hour', sub: 'Portrait', grad: 'hf-g5', img: '/media/hero-golden.jpg', badge: 'Image', eager: true },
-    { label: 'Bullet Time', sub: 'Camera control', grad: 'hf-g3', img: '/media/hero-bullet.jpg', badge: 'Video' },
-    { label: 'FPV Drone', sub: 'Kling 2.5', grad: 'hf-g4', img: '/media/hero-aerial.jpg', badge: 'Video', float: true },
-    { label: 'Vogue Cover', sub: 'Seedream 4', grad: 'hf-g10', img: '/media/hero-vogue.jpg', badge: 'Image' },
-    { label: 'Deep Space', sub: 'Veo 3', grad: 'hf-g9', img: '/media/hero-space.jpg', badge: 'Video', float: true }
-];
+import CreateDemo from './CreateDemo.astro';
 
 const models = ['Seedance 2.0', 'Kling 2.5', 'Veo 3', 'Sora 2', 'Flux 1.1', 'Nano Banana', 'Seedream 4', 'Hailuo', 'Wan 2.5', 'Ideogram', 'Recraft', 'Luma'];
 ---
@@ -42,7 +31,7 @@ const models = ['Seedance 2.0', 'Kling 2.5', 'Veo 3', 'Sora 2', 'Flux 1.1', 'Nan
             </p>
 
             <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a href="#" class="hf-btn hf-btn-primary hf-btn-lg">Start creating free</a>
+                <a href="#create" class="hf-btn hf-btn-primary hf-btn-lg">Start creating free</a>
                 <a href="#" class="hf-btn hf-btn-outline hf-btn-lg">
                     <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
                     Watch the reel
@@ -51,12 +40,9 @@ const models = ['Seedance 2.0', 'Kling 2.5', 'Veo 3', 'Sora 2', 'Flux 1.1', 'Nan
             <p class="mt-4 text-xs text-white/40">No credit card required · Join 10M+ creators</p>
         </div>
 
-        <!-- generated-media wall -->
-        <div class="relative mt-16">
-            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
-                {wall.map((t) => <Tile {...t} ratio="aspect-[3/4]" />)}
-            </div>
-            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent"></div>
+        <!-- interactive create demo -->
+        <div class="mt-14">
+            <CreateDemo />
         </div>
     </div>
 

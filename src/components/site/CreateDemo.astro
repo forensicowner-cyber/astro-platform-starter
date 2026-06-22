@@ -1,0 +1,302 @@
+---
+const models = ['Seedance 2.0', 'Kling 2.5', 'Veo 3', 'Sora 2', 'Flux 1.1', 'Nano Banana'];
+const presets = ['Cinematic', 'Drift Motion', 'Neon Noir', 'Golden Hour', 'Bullet Time', 'Storm VFX', 'FPV Drone', 'Vogue'];
+const aspects = ['16:9', '1:1', '9:16'];
+
+const examples = [
+    'a drift car at night, neon reflections',
+    'cinematic portrait, golden hour',
+    'aerial shot over snowy mountains',
+    'deep space nebula, ultra detailed'
+];
+
+// image pool with theme tags used for keyword matching in the client script
+const pool = [
+    { src: '/media/hero-drift.jpg', tags: ['car', 'drift', 'race', 'racing', 'speed', 'motion', 'street', 'night'] },
+    { src: '/media/hero-storm.jpg', tags: ['storm', 'lightning', 'cloud', 'clouds', 'sky', 'dramatic', 'dark', 'rain', 'thunder'] },
+    { src: '/media/hero-neon.jpg', tags: ['neon', 'city', 'tokyo', 'cyberpunk', 'night', 'urban', 'street', 'glow', 'reflections'] },
+    { src: '/media/hero-golden.jpg', tags: ['portrait', 'face', 'golden', 'hour', 'woman', 'man', 'sun', 'warm', 'person'] },
+    { src: '/media/hero-bullet.jpg', tags: ['bullet', 'time', 'action', 'cinematic', 'slow', 'motion'] },
+    { src: '/media/hero-aerial.jpg', tags: ['drone', 'aerial', 'mountain', 'mountains', 'snowy', 'landscape', 'nature', 'fpv', 'fly', 'above', 'wide'] },
+    { src: '/media/hero-vogue.jpg', tags: ['vogue', 'fashion', 'model', 'portrait', 'editorial', 'studio', 'person'] },
+    { src: '/media/hero-space.jpg', tags: ['space', 'galaxy', 'star', 'stars', 'nebula', 'cosmos', 'universe', 'deep', 'sci'] },
+    { src: '/media/pre-kungfu.jpg', tags: ['kung', 'fu', 'martial', 'action', 'fight', 'dynamic'] },
+    { src: '/media/pre-paparazzi.jpg', tags: ['paparazzi', 'flash', 'celebrity', 'portrait', 'night', 'person'] },
+    { src: '/media/pre-crashzoom.jpg', tags: ['crash', 'zoom', 'cinematic', 'dramatic'] },
+    { src: '/media/pre-quake.jpg', tags: ['earthquake', 'storm', 'dramatic', 'destruction', 'dark'] },
+    { src: '/media/pre-dolly.jpg', tags: ['dolly', 'landscape', 'aerial', 'cinematic', 'wide'] },
+    { src: '/media/pre-golden2.jpg', tags: ['golden', 'portrait', 'warm', 'person', 'sun', 'glow'] },
+    { src: '/media/prod-canvas.jpg', tags: ['abstract', 'art', 'paint', 'color', 'colour', 'fluid', 'liquid'] },
+    { src: '/media/prod-cinema.jpg', tags: ['cinema', 'film', 'cinematic', 'movie'] }
+];
+
+// server-rendered initial results so the grid looks rich without JS
+const initial = [
+    { src: '/media/hero-drift.jpg', model: 'Seedance 2.0', preset: 'Drift Motion' },
+    { src: '/media/hero-neon.jpg', model: 'Nano Banana', preset: 'Neon Noir' },
+    { src: '/media/hero-vogue.jpg', model: 'Seedream 4', preset: 'Vogue' },
+    { src: '/media/hero-space.jpg', model: 'Veo 3', preset: 'Cinematic' },
+    { src: '/media/hero-aerial.jpg', model: 'Kling 2.5', preset: 'FPV Drone' },
+    { src: '/media/hero-storm.jpg', model: 'Sora 2', preset: 'Storm VFX' }
+];
+---
+
+<div id="create" class="mx-auto max-w-5xl scroll-mt-24">
+    <div class="hf-card p-4 sm:p-5">
+        <div class="mb-3 flex items-center gap-2">
+            <span class="hf-chip">
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-orange-400 to-fuchsia-500"></span>
+                Create — live demo
+            </span>
+            <span class="text-xs text-white/30">No sign-up. Runs in your browser.</span>
+        </div>
+
+        <!-- prompt -->
+        <div class="relative">
+            <svg viewBox="0 0 24 24" class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/40" fill="currentColor" aria-hidden="true">
+                <path d="M12 1.5l2.1 6.3a4 4 0 0 0 2.1 2.1L22.5 12l-6.3 2.1a4 4 0 0 0-2.1 2.1L12 22.5l-2.1-6.3a4 4 0 0 0-2.1-2.1L1.5 12l6.3-2.1a4 4 0 0 0 2.1-2.1L12 1.5z"></path>
+            </svg>
+            <label for="hf-prompt" class="sr-only">Describe your shot</label>
+            <input
+                id="hf-prompt"
+                type="text"
+                autocomplete="off"
+                placeholder="Describe your shot — a drift car at night, neon reflections…"
+                class="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-sm text-white outline-none transition placeholder:text-white/35 focus:border-white/40 sm:text-base"
+            />
+        </div>
+
+        <!-- controls -->
+        <div class="mt-3 flex flex-wrap items-center gap-2.5">
+            <label class="relative">
+                <span class="sr-only">Model</span>
+                <select id="hf-model" class="hf-field cursor-pointer appearance-none pr-9" style="color-scheme: dark">
+                    {models.map((m) => <option value={m}>{m}</option>)}
+                </select>
+                <svg viewBox="0 0 24 24" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+            </label>
+
+            <label class="relative">
+                <span class="sr-only">Preset</span>
+                <select id="hf-preset" class="hf-field cursor-pointer appearance-none pr-9" style="color-scheme: dark">
+                    {presets.map((p) => <option value={p}>{p}</option>)}
+                </select>
+                <svg viewBox="0 0 24 24" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+            </label>
+
+            <div id="hf-aspect" class="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 p-1">
+                {
+                    aspects.map((a, i) => (
+                        <button type="button" data-aspect={a} class:list={['hf-aspect-btn', i === 1 && 'hf-aspect-on']}>
+                            {a}
+                        </button>
+                    ))
+                }
+            </div>
+
+            <button id="hf-generate" type="button" class="hf-btn hf-btn-gradient ml-auto min-w-[8.5rem]">
+                <span class="hf-spin-ring hidden h-4 w-4"></span>
+                <span data-gen-label>Generate</span>
+                <svg data-gen-arrow viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </button>
+        </div>
+
+        <!-- examples -->
+        <div class="mt-3 flex flex-wrap items-center gap-2">
+            <span class="text-xs text-white/35">Try:</span>
+            {
+                examples.map((ex) => (
+                    <button type="button" data-example={ex} class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60 transition hover:border-white/25 hover:text-white">
+                        {ex}
+                    </button>
+                ))
+            }
+        </div>
+
+        <!-- status -->
+        <div id="hf-status" class="mt-4 hidden" aria-live="polite">
+            <div class="mb-1.5 flex items-center justify-between text-xs text-white/50">
+                <span id="hf-status-text">Planning shots…</span>
+                <span id="hf-status-pct">0%</span>
+            </div>
+            <div class="h-1 w-full overflow-hidden rounded-full bg-white/10">
+                <div id="hf-bar" class="h-full w-0 rounded-full bg-gradient-to-r from-orange-400 via-fuchsia-500 to-violet-500 transition-[width] duration-100"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- results -->
+    <div id="hf-results" class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {
+            initial.map((r, i) => (
+                <div data-tile class="group relative aspect-square overflow-hidden rounded-2xl border border-white/10">
+                    <img src={r.src} alt="" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <span class="absolute left-2.5 top-2.5 rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-medium backdrop-blur">{r.model}</span>
+                    <span class="absolute bottom-2.5 left-2.5 text-xs font-medium">{r.preset}</span>
+                </div>
+            ))
+        }
+    </div>
+    <p class="mt-3 text-center text-[11px] text-white/30">
+        Demo only — results are pre-rendered sample frames matched to your prompt, not live model output.
+    </p>
+</div>
+
+<script type="application/json" id="hf-pool" set:html={JSON.stringify(pool)}></script>
+
+<script>
+    type PoolItem = { src: string; tags: string[] };
+
+    const poolEl = document.getElementById('hf-pool');
+    const pool: PoolItem[] = poolEl ? JSON.parse(poolEl.textContent || '[]') : [];
+
+    const promptEl = document.getElementById('hf-prompt') as HTMLInputElement | null;
+    const modelEl = document.getElementById('hf-model') as HTMLSelectElement | null;
+    const presetEl = document.getElementById('hf-preset') as HTMLSelectElement | null;
+    const genBtn = document.getElementById('hf-generate') as HTMLButtonElement | null;
+    const results = document.getElementById('hf-results');
+    const statusWrap = document.getElementById('hf-status');
+    const statusText = document.getElementById('hf-status-text');
+    const statusPct = document.getElementById('hf-status-pct');
+    const bar = document.getElementById('hf-bar');
+    const spinner = genBtn?.querySelector('.hf-spin-ring');
+    const genLabel = genBtn?.querySelector('[data-gen-label]');
+    const genArrow = genBtn?.querySelector('[data-gen-arrow]');
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const TILE_BASE = 'group relative overflow-hidden rounded-2xl border border-white/10';
+    const aspectClass: Record<string, string> = {
+        '16:9': 'aspect-video',
+        '1:1': 'aspect-square',
+        '9:16': 'aspect-[9/16]'
+    };
+    let aspect = '1:1';
+
+    // aspect toggle
+    document.querySelectorAll<HTMLButtonElement>('#hf-aspect [data-aspect]').forEach((b) => {
+        b.addEventListener('click', () => {
+            aspect = b.dataset.aspect || '1:1';
+            document.querySelectorAll('#hf-aspect [data-aspect]').forEach((x) => x.classList.toggle('hf-aspect-on', x === b));
+            results?.querySelectorAll<HTMLElement>('[data-tile]').forEach((t) => {
+                t.className = `${TILE_BASE} ${aspectClass[aspect]}`;
+            });
+        });
+    });
+
+    // example chips
+    document.querySelectorAll<HTMLButtonElement>('[data-example]').forEach((b) => {
+        b.addEventListener('click', () => {
+            if (!promptEl) return;
+            promptEl.value = b.dataset.example || '';
+            promptEl.focus();
+        });
+    });
+
+    function pickImages(prompt: string, n: number): PoolItem[] {
+        const words = (prompt.toLowerCase().match(/[a-z]+/g) || []) as string[];
+        const scored = pool.map((p) => {
+            let s = 0;
+            for (const w of words) if (p.tags.includes(w)) s += 1;
+            return { p, s: s + Math.random() * 0.45 };
+        });
+        scored.sort((a, b) => b.s - a.s);
+        return scored.slice(0, n).map((x) => x.p);
+    }
+
+    function setBusy(busy: boolean) {
+        if (!genBtn) return;
+        genBtn.disabled = busy;
+        genBtn.setAttribute('aria-busy', String(busy));
+        spinner?.classList.toggle('hidden', !busy);
+        genArrow?.classList.toggle('hidden', busy);
+        if (genLabel) genLabel.textContent = busy ? 'Generating' : 'Generate';
+    }
+
+    function generate() {
+        if (!results || genBtn?.disabled) return;
+        const prompt = (promptEl?.value || '').trim() || 'cinematic neon city at night';
+        const model = modelEl?.value || 'Seedance 2.0';
+        const preset = presetEl?.value || 'Cinematic';
+        const imgs = pickImages(prompt, 6);
+
+        setBusy(true);
+
+        // skeletons
+        results.innerHTML = '';
+        const tiles = imgs.map(() => {
+            const d = document.createElement('div');
+            d.setAttribute('data-tile', '');
+            d.className = `${TILE_BASE} ${aspectClass[aspect]}`;
+            d.innerHTML = '<div class="absolute inset-0 hf-skeleton"></div>';
+            results.appendChild(d);
+            return d;
+        });
+
+        const reveal = () => {
+            tiles.forEach((d, i) => {
+                window.setTimeout(
+                    () => {
+                        const im = imgs[i];
+                        d.innerHTML =
+                            `<img src="${im.src}" alt="" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500" />` +
+                            '<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>' +
+                            `<span class="absolute left-2.5 top-2.5 rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-medium backdrop-blur">${model}</span>` +
+                            `<span class="absolute bottom-2.5 left-2.5 text-xs font-medium">${preset}</span>`;
+                        const img = d.querySelector('img');
+                        requestAnimationFrame(() => img?.classList.remove('opacity-0'));
+                    },
+                    reduce ? 0 : i * 90
+                );
+            });
+        };
+
+        const finish = () => {
+            setBusy(false);
+            window.setTimeout(
+                () => {
+                    statusWrap?.classList.add('hidden');
+                    if (bar) bar.style.width = '0%';
+                },
+                reduce ? 0 : 600
+            );
+        };
+
+        statusWrap?.classList.remove('hidden');
+        const steps = ['Planning shots…', `Calling ${model}…`, `Applying ${preset}…`, 'Rendering frames…', 'Upscaling…'];
+
+        if (reduce) {
+            if (statusText) statusText.textContent = 'Done';
+            if (statusPct) statusPct.textContent = '100%';
+            if (bar) bar.style.width = '100%';
+            reveal();
+            finish();
+            return;
+        }
+
+        const total = 1900;
+        const start = performance.now();
+        const frame = (now: number) => {
+            const t = Math.min(1, (now - start) / total);
+            const pct = Math.round(t * 100);
+            if (bar) bar.style.width = `${pct}%`;
+            if (statusPct) statusPct.textContent = `${pct}%`;
+            if (statusText) statusText.textContent = steps[Math.min(steps.length - 1, Math.floor(t * steps.length))];
+            if (t < 1) requestAnimationFrame(frame);
+            else {
+                reveal();
+                finish();
+            }
+        };
+        requestAnimationFrame(frame);
+    }
+
+    genBtn?.addEventListener('click', generate);
+    promptEl?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            generate();
+        }
+    });
+</script>
