@@ -3,17 +3,44 @@ interface Props {
     label?: string;
     sub?: string;
     grad?: string;
+    img?: string;
+    alt?: string;
     ratio?: string;
     badge?: string;
     float?: boolean;
+    eager?: boolean;
     class?: string;
 }
 
-const { label, sub, grad = 'hf-g1', ratio = 'aspect-[3/4]', badge, float = false, class: className = '' } = Astro.props;
+const {
+    label,
+    sub,
+    grad = 'hf-g1',
+    img,
+    alt,
+    ratio = 'aspect-[3/4]',
+    badge,
+    float = false,
+    eager = false,
+    class: className = ''
+} = Astro.props;
 ---
 
 <div class:list={['hf-card group', ratio, className]}>
-    <div class:list={['absolute inset-0', grad, float && 'hf-anim-float']}></div>
+    <div class:list={['absolute inset-0', float && 'hf-anim-float']}>
+        <div class:list={['absolute inset-0', grad]}></div>
+        {
+            img && (
+                <img
+                    src={img}
+                    alt={alt ?? label ?? ''}
+                    loading={eager ? 'eager' : 'lazy'}
+                    decoding="async"
+                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+            )
+        }
+    </div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
     <div class="absolute inset-0 grid place-items-center opacity-0 transition duration-300 group-hover:opacity-100">
         <span class="grid h-12 w-12 place-items-center rounded-full bg-white/95 text-black shadow-lg">

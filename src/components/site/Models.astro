@@ -3,18 +3,21 @@ const columns = [
     {
         kind: 'Image',
         grad: 'hf-g5',
+        img: '/media/model-image.jpg',
         blurb: 'Photoreal stills, product shots and character art.',
         models: ['Nano Banana Pro', 'Seedream 4', 'Flux 1.1', 'Ideogram 3', 'Recraft v3']
     },
     {
         kind: 'Video',
         grad: 'hf-g2',
+        img: '/media/model-video.jpg',
         blurb: 'Cinematic motion with real camera and character control.',
         models: ['Seedance 2.0', 'Kling 2.5', 'Veo 3', 'Sora 2', 'Hailuo', 'Wan 2.5']
     },
     {
         kind: 'Audio',
         grad: 'hf-g3',
+        img: '/media/model-audio.jpg',
         blurb: 'Voices, lipsync and soundtracks that match the cut.',
         models: ['Speak v3', 'Lipsync Studio', 'Voice Clone', 'Soundtrack']
     }
@@ -35,6 +38,17 @@ const columns = [
         {
             columns.map((c) => (
                 <div class="hf-card flex flex-col p-6">
+                    <div class="relative mb-5 aspect-[16/7] overflow-hidden rounded-2xl">
+                        <div class:list={['absolute inset-0', c.grad]} />
+                        <img
+                            src={c.img}
+                            alt={`${c.kind} models`}
+                            loading="lazy"
+                            decoding="async"
+                            class="absolute inset-0 h-full w-full object-cover"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
                     <div class="flex items-center gap-3">
                         <span class:list={['grid h-10 w-10 place-items-center rounded-xl text-sm font-bold text-black', c.grad]}>
                             {c.kind[0]}

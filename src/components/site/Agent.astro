@@ -59,10 +59,18 @@ const steps = [
                 </p>
             </div>
             <div class="grid grid-cols-4 gap-2.5">
-                <div class="aspect-square rounded-xl hf-g5 hf-anim-float"></div>
-                <div class="aspect-square rounded-xl hf-g1"></div>
-                <div class="aspect-square rounded-xl hf-g6 hf-anim-float-slow"></div>
-                <div class="aspect-square rounded-xl hf-g3"></div>
+                {
+                    [
+                        { src: '/media/hero-golden.jpg', f: 'hf-anim-float' },
+                        { src: '/media/hero-drift.jpg', f: '' },
+                        { src: '/media/prod-canvas.jpg', f: 'hf-anim-float-slow' },
+                        { src: '/media/hero-storm.jpg', f: '' }
+                    ].map((t) => (
+                        <div class:list={['aspect-square overflow-hidden rounded-xl', t.f]}>
+                            <img src={t.src} alt="" loading="lazy" decoding="async" class="h-full w-full object-cover" />
+                        </div>
+                    ))
+                }
             </div>
             <div class="mt-4 flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/40">
                 <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-400"></span>

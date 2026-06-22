@@ -5,24 +5,28 @@ const small = [
         title: 'Speak',
         desc: 'Lifelike AI voices and frame-accurate lipsync in 30+ languages.',
         grad: 'hf-g3',
+        img: '/media/prod-speak.jpg',
         badge: 'Voice'
     },
     {
         title: 'Canvas',
         desc: 'An infinite workspace to mix, mask and recompose every generation.',
         grad: 'hf-g2',
+        img: '/media/prod-canvas.jpg',
         badge: 'Editor'
     },
     {
         title: 'Photoshop Plugin',
         desc: 'Turn rough sketches into finished renders in real time, on your layers.',
         grad: 'hf-g5',
+        img: '/media/prod-plugin.jpg',
         badge: 'Plugin'
     },
     {
         title: 'Higgsfield Games',
         desc: 'Playable, generative worlds you can prompt into existence and share.',
         grad: 'hf-g4',
+        img: '/media/prod-games.jpg',
         badge: 'New'
     }
 ];
@@ -39,6 +43,13 @@ const small = [
         <!-- hero product -->
         <article class="hf-card group flex min-h-[26rem] flex-col justify-end sm:col-span-2 lg:row-span-2">
             <div class="absolute inset-0 hf-g6"></div>
+            <img
+                src="/media/prod-cinema.jpg"
+                alt="Cinema Studio"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+            />
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
             <div class="relative p-7">
                 <span class="hf-chip mb-4">Cinema Studio</span>
@@ -57,7 +68,14 @@ const small = [
             small.map((p) => (
                 <article class="hf-card group flex flex-col">
                     <div class="relative aspect-[16/10] overflow-hidden">
-                        <div class:list={['absolute inset-0 transition duration-500 group-hover:scale-105', p.grad]} />
+                        <div class:list={['absolute inset-0', p.grad]} />
+                        <img
+                            src={p.img}
+                            alt={p.title}
+                            loading="lazy"
+                            decoding="async"
+                            class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <span class="absolute left-3 top-3 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-medium text-white/90 backdrop-blur">
                             {p.badge}
